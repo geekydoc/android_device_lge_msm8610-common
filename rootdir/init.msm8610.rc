@@ -42,7 +42,7 @@ on early-boot
 
 on boot
     
-    #Knock on
+    #Knock On
     chown system system /sys/devices/virtual/input/lge_touch/lpwg_data
     chmod 664 /sys/devices/virtual/input/lge_touch/lpwg_data
     chown system radio /sys/devices/virtual/input/lge_touch/lpwg_notify
