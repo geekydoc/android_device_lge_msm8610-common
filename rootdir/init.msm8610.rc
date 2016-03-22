@@ -36,7 +36,21 @@ on post-fs-data
     mkdir /data/tombstones 0771 system system
     mkdir /tombstones/modem 0771 system system
 
-    setprop vold.post_fs_data_done 1
+# Proxi sensor
+   chown system system /sys/devices/f9925000.i2c/i2c-3/3-0039/enable_ps_sensor
+   chmod 0660  /sys/devices/f9925000.i2c/i2c-3/3-0039/enable_ps_sensor
+   chown system system /sys/devices/f9925000.i2c/i2c-3/3-0039/pilt
+   chmod 0660  /sys/devices/f9925000.i2c/i2c-3/3-0039/pilt
+   chown system system /sys/devices/f9925000.i2c/i2c-3/3-0039/piht
+   chmod 0660  /sys/devices/f9925000.i2c/i2c-3/3-0039/piht
+   chown system system /sys/devices/f9925000.i2c/i2c-3/3-0039/run_calibration
+   chmod 0660 /sys/devices/f9925000.i2c/i2c-3/3-0039/run_calibration
+   chown system system /sys/devices/f9925000.i2c/i2c-3/3-0039/prox_cal_data
+   chmod 0660  /sys/devices/f9925000.i2c/i2c-3/3-0039/prox_cal_data
+   chown system system /sys/devices/f9925000.i2c/i2c-3/3-0039/pdata
+   chmod 0660  /sys/devices/f9925000.i2c/i2c-3/3-0039/pdata
+
+   setprop vold.post_fs_data_done 1
 
 on early-boot
 
@@ -61,6 +75,9 @@ on property:init.svc.media=restarting
 on property:init.svc.servicemanager=restarting
     restart qcamerasvr
 #LGE_CHANGE_E, restart qcamerasvr when restarting mediaserver and servicemanager, yousung.kang@lge.com
+
+
+
 
 # Allow usb charging to be disabled persistently
 on property:persist.usb.chgdisabled=1
@@ -163,6 +180,24 @@ service mmi-ril-daemon /system/bin/rild
     user root
     group radio cache inet misc audio sdcard_rw qcom_oncrpc qcom_diag log net_raw diag
 
-service sensord /system/bin/sensord
-    class late_start
-    oneshot
+
+service sensorservice /system/bin/sensorservice   
+	user system
+    group system misc input
+
+#service akmd start
+on init
+    chown system system /sys/class/compass/akm09911/enable_acc
+    chown system system /sys/class/compass/akm09911/enable_mag
+    chown system system /sys/class/compass/akm09911/enable_fusion
+    chown system system /sys/class/compass/akm09911/delay_acc
+    chown system system /sys/class/compass/akm09911/delay_mag
+    chown system system /sys/class/compass/akm09911/delay_fusion
+    chown system system /sys/class/compass/akm09911/accel
+
+service akmd /system/bin/akmd09911 -m 6
+   	class main
+    user system
+    group system misc input
+
+

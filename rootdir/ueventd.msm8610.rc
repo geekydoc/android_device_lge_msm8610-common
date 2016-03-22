@@ -176,11 +176,11 @@
 /sys/devices/f9925000.i2c/i2c-0/0-* poll_delay      0660     input     system
 /sys/devices/virtual/optical_sensors/proximity      ps_adc         0660    input    system
 /sys/devices/virtual/optical_sensors/proximity      ps_poll_delay  0660    input    system
-/sys/devices/virtual/optical_sensors/lightsensor    ls_auto        0660    input    system
-/sys/devices/virtual/optical_sensors/lightsensor    ls_poll_delay  0660    input    system
 /sys/devices/virtual/input/input*                   poll           0660    input    system
 /sys/devices/virtual/input/input*                   pollrate_ms    0660    input    system
 /sys/devices/virtual/input/input*   enable      0660  root   input
+
+
 
 # wlan
 /dev/wcnss_wlan           0660   system     system
@@ -189,6 +189,7 @@
 #nfc permissions
 /dev/nfc-nci              0660    nfc         nfc
 /dev/pn547                0660    nfc         nfc
+/dev/pn544                0660    nfc         nfc
 
 # UIO devices
 /dev/uio0                 0660   system     system
@@ -198,3 +199,8 @@
 # Begin Immersion changes
 /dev/tspdrv               0660   system       system
 # End Immersion changes
+
+#Sensor Devices
+/dev/akm09911_dev         0660   system     system
+/dev/akm09911		      0660   system     system
+/dev/K3DH 	              0660   system     system
