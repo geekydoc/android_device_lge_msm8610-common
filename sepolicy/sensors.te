@@ -12,4 +12,3 @@ allow sensors apk_data_file:sock_file setattr;
 allow sensors apk_data_file:sock_file unlink;
 allow sensors apk_data_file:sock_file write;
 allow sensors apk_data_file:sock_file create;
-
