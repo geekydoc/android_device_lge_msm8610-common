@@ -34,7 +34,8 @@ const char CameraParameters::KEY_VIDEO_WDR_SUPPORTED[] = "video-wdr-supported"; 
 const char CameraParameters::VIDEO_WDR_OFF[] = "video-wdr"; \
 const char CameraParameters::VIDEO_WDR_ON[] = "video-wdr"; \
 const char CameraParameters::OBJECT_TRACKING_ON[] = "object-tracking"; \
-const char CameraParameters::OBJECT_TRACKING_OFF[] = "object-tracking";
+const char CameraParameters::OBJECT_TRACKING_OFF[] = "object-tracking"; \
+bool CameraParameters::isPreview=false;
 
 #define CAMERA_PARAMETERS_EXTRA_H \
     static const char AUDIO_ZOOM_OFF[]; \
@@ -56,4 +57,5 @@ const char CameraParameters::OBJECT_TRACKING_OFF[] = "object-tracking";
     static const char VIDEO_WDR_OFF[]; \
     static const char VIDEO_WDR_ON[]; \
     static const char OBJECT_TRACKING_ON[]; \
-    static const char OBJECT_TRACKING_OFF[];
+    static const char OBJECT_TRACKING_OFF[]; \
+    static bool isPreview;
