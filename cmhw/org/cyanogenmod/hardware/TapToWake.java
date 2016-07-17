@@ -34,8 +34,9 @@ public class TapToWake {
     public static boolean setEnabled(boolean state)  {
         mEnabled = state;
         FileUtils.writeLine(CONTROL_PATH, (state ? "3 0 0 0" : "1 0 0 0"));
-		FileUtils.writeLine(CONTROL_PATH, (state ? "4 2 0 0" : "4 0 0 0"));
-		FileUtils.writeLine(CONTROL_PATH, (state ? "8 1 0 0" : "8 0 0 0"));
-		FileUtils.writeLine(CONTROL_PATH, (state ? "9 1 1 0" : "9 0 0 0"));
+	FileUtils.writeLine(CONTROL_PATH, (state ? "4 2 0 0" : "4 0 0 0"));
+	FileUtils.writeLine(CONTROL_PATH, (state ? "8 1 0 0" : "8 0 0 0"));
+	FileUtils.writeLine(CONTROL_PATH, (state ? "9 1 1 0" : "9 0 0 0"));
+	return state;
     }
 }
