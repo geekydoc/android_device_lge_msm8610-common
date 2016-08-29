@@ -51,14 +51,14 @@
     <bool name="config_automatic_brightness_available">false</bool>
 
     <!--Defines the system property to set for performance profile xe: sys.cpu.modes. Leave it
-	blank if the device do not support performance profiles -->
-    <string name="config_perf_profile_prop" translatable="false">sys.perf.profile</string>
+	blank if the device do not support performance profiles
+    <string name="config_perf_profile_prop" translatable="false">sys.perf.profile</string>-->
 
     <!--When config_perf_profile_prop is defined, this value MUST be the index of
 	one of the listes values in frameworks/base/core/res/res/values/cm_arrays.xml
 	for "perf_profile_values" array. Leave it blank if the device do not support
-	performance profiles -->
-    <string name="config_perf_profile_default_entry" translatable="false">1</string>
+	performance profiles
+    <string name="config_perf_profile_default_entry" translatable="false">1</string>-->
 
     <!-- Traffic stats -->
     <string name="config_datause_iface">rmnet0</string>
@@ -118,10 +118,35 @@
 
  <!-- The list absolute paths of jar/apk files containing the device specific handlers,
 delimited by File.pathSeparator, which defaults to ":" on Android -->
-<string name="config_deviceKeyHandlerLib" translatable="false">/system/framework/com.cyanogenmod.keyhandler.jar</string>
+	<string name="config_deviceKeyHandlerLib" translatable="false">/system/framework/com.cyanogenmod.keyhandler.jar</string>
 
  <!-- Full qualified name of the class that implements
 com.android.internal.os.DeviceKeyHandler interface. -->
 
-<string name="config_deviceKeyHandlerClass" translatable="false">com.cyanogenmod.settings.device.KeyHandler</string>
+	<string name="config_deviceKeyHandlerClass" translatable="false">com.cyanogenmod.settings.device.KeyHandler</string>
+
+    <!-- Whether device supports double tap to wake -->
+    <bool name="config_supportDoubleTapWake">true</bool>
+
+    <!-- enable doze powersaving mode -->
+    <bool name="config_enableAutoPowerModes">true</bool>
+
+    <!-- Enable overlay for all location components. -->
+    <bool name="config_enableNetworkLocationOverlay" translatable="false">false</bool>
+    <string name="config_networkLocationProviderPackageName" translatable="false">com.qualcomm.location</string>
+    <bool name="config_enableFusedLocationOverlay" translatable="false">false</bool>
+    <string name="config_fusedLocationProviderPackageName" translatable="false">com.qualcomm.location</string>
+
+	<integer name="config_longPressOnHomeBehavior">2</integer>
+
+    <!-- Our modem doesn't support this query yet -->
+    <string name="config_radio_access_family">GPRS|EDGE|UMTS|HSDPA|HSUPA|HSPA|HSPAP|GSM|WCDMA</string>
+
+    <!--Fully qualified class name of the plugin which would be
+         dynamically loaded by TelephonyPluginDelegate-->
+    <string name="telephony_plugin_class_name" translatable="false">com.qti.internal.telephony.QtiTelephonyPlugin</string>
+
+    <!--The locatiotion of .jar file which has the extended implementation
+         of telephony base classes.-->
+    <string name="telephony_plugin_lib_path" translatable="false">/system/framework/qti-telephony-common.jar</string>
 </resources>
