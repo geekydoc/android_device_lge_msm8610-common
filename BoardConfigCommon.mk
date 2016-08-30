@@ -182,6 +182,6 @@ TARGET_RECOVERY_QCOM_RTC_FIX := true
 # qcom sepolicy
 include device/qcom/sepolicy/sepolicy.mk
 
-BOARD_SEPOLICY_DIRS += \
-        device/lge/msm8610-common/sepolicy
+#BOARD_SEPOLICY_DIRS += \
+#        device/lge/msm8610-common/sepolicy
 
