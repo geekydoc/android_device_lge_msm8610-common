@@ -74,7 +74,8 @@ PRODUCT_COPY_FILES += \
     device/lge/msm8610-common/prebuilt/etc/clatd.conf:system/etc/clatd.conf \
     device/lge/msm8610-common/prebuilt/etc/sec_config:system/etc/sec_config \
     device/lge/msm8610-common/prebuilt/etc/izat.conf:system/etc/izat.conf \
-    device/lge/msm8610-common/prebuilt/etc/quipc.conf:system/etc/quipc.conf
+    device/lge/msm8610-common/prebuilt/etc/quipc.conf:system/etc/quipc.conf \
+	device/lge/msm8610-common/prebuilt/etc/init.qcom.fm.sh:system/etc/init.qcom.fm.sh
 
 
 # Ramdisk
@@ -165,10 +166,8 @@ PRODUCT_PACKAGES += \
 
 # FM radio
 PRODUCT_PACKAGES += \
-    qcom.fmradio \
-    libqcomfm_jni \
-    FM2 \
-    FMRecord
+	FMRadio \
+    libfmjni
 
 # GPS
 PRODUCT_PACKAGES += \
@@ -291,10 +290,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
     media.stagefright.enable-http=true \
     media.stagefright.enable-aac=true \
     media.stagefright.enable-qcp=true \
-    media.stagefright.enable-fma2dp=true \
     media.stagefright.enable-scan=true \
     mmp.enable.3g2=true \
-    ro.audio.fm_max_volume=4096 \
     ro.qualcomm.cabl=0 \
     use.voice.path.for.pcm.voip=false \
     qcom.bt.le_dev_pwr_class=1 \
@@ -334,15 +331,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.config.vc_call_vol_steps=7 \
     ro.modem.no_wdog_chk=1 \
     persist.call_recording.enabled=1
-
-# NFC packages
-#PRODUCT_PACKAGES += \
-#    NfcNci \
-#    Tag \
-#    nfc_nci.w \
-#    com.android.nfc_extras
-
-#NFCEE_ACCESS_PATH := device/lge/w/prebuilt/etc/nfcee_access.xml
 
 # Keyhandler
 PRODUCT_PACKAGES += \

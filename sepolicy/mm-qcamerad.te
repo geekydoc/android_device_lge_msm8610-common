@@ -1,0 +1,13 @@
+allow mm-qcamerad system_server:unix_stream_socket { read write };
+allow mm-qcamerad debug_prop:property_service set;
+allow mm-qcamerad property_socket:sock_file write;
+allow mm-qcamerad init:unix_stream_socket connectto;
+allow mm-qcamerad camera_prop:property_service set;
+allow servicemanager mm-qcamerad:dir search;
+allow servicemanager mm-qcamerad:file { open read };
+allow servicemanager mm-qcamerad:process { getattr };
+allow mm-qcamerad system_data_file:dir w_dir_perms;
+allow mm-qcamerad system_file:file execmod;
+binder_call(mm-qcamerad, servicemanager)
+binder_call(mm-qcamerad, system_server)
+unix_socket_connect(mm-qcamerad, mpctl, mpdecision)

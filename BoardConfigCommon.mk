@@ -45,16 +45,12 @@ TARGET_BOOTLOADER_BOARD_NAME := MSM8610
 # Kernel image
 BOARD_KERNEL_SEPARATED_DT := true
 TARGET_KERNEL_SOURCE := kernel/lge/msm8610
-BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 androidboot.selinux=disabled user_debug=23 msm_rtb.filter=0x37 androidboot.hardware=msm8610
+BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 androidboot.selinux=permissive user_debug=23 msm_rtb.filter=0x37 androidboot.hardware=msm8610
 BOARD_KERNEL_BASE := 0x00000000
 BOARD_KERNEL_PAGESIZE := 2048
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x01000000 --tags_offset 0x00000100
 
 # Offmode Charging
-BOARD_CHARGER_ENABLE_SUSPEND := true
-BOARD_CHARGER_SHOW_PERCENTAGE := true
-BOARD_CHARGER_DISABLE_INIT_BLANK := true
-BOARD_HEALTHD_CUSTOM_CHARGER := device/lge/msm8610-common/charger/healthd_mode_charger.cpp
 COMMON_GLOBAL_CFLAGS += \
     -DBOARD_CHARGING_CMDLINE_NAME='"androidboot.mode"' \
     -DBOARD_CHARGING_CMDLINE_VALUE='"chargerlogo"'
@@ -63,16 +59,15 @@ COMMON_GLOBAL_CFLAGS += \
 COMMON_GLOBAL_CFLAGS += -DLG_CAMERA_HARDWARE
 
 # Audio
-BOARD_HAVE_QCOM_FM := true
-AUDIO_FEATURE_ENABLED_FM := true
 AUDIO_FEATURE_ENABLED_MULTI_VOICE_SESSIONS := true
-TARGET_USES_QCOM_MM_AUDIO := true
 BOARD_USES_ALSA_AUDIO := true
-BOARD_USES_FLUENCE_INCALL := true
-BOARD_USES_SEPERATED_AUDIO_INPUT := true
-BOARD_USES_SEPERATED_VOICE_SPEAKER := true
-TARGET_USES_QCOM_COMPRESSED_AUDIO := true
+AUDIO_FEATURE_ENABLED_NEW_SAMPLE_RATE := true
 USE_CUSTOM_AUDIO_POLICY := 1
+AUDIO_FEATURE_ENABLED_HWDEP_CAL := true
+
+#FM
+AUDIO_FEATURE_ENABLED_FM_POWER_OPT := true
+TARGET_QCOM_NO_FM_FIRMWARE := true
 
 # GPS
 TARGET_NO_RPC := true
@@ -184,6 +179,6 @@ TARGET_RECOVERY_QCOM_RTC_FIX := true
 # qcom sepolicy
 include device/qcom/sepolicy/sepolicy.mk
 
-#BOARD_SEPOLICY_DIRS += \
-#        device/lge/msm8610-common/sepolicy
+BOARD_SEPOLICY_DIRS += \
+       device/lge/msm8610-common/sepolicy
 

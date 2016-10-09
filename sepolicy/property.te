@@ -1,0 +1,2 @@
+# Motorola service properties
+type hw_revs_prop, property_type;
