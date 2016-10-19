@@ -270,6 +270,14 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PACKAGES += \
     libboringssl-compat
 
+# Gello
+PRODUCT_PACKAGES += \
+    Gello
+
+# Snap
+PRODUCT_PACKAGES += \
+	Snap
+
 # Media
 PRODUCT_PROPERTY_OVERRIDES += \
     lpa.decode=true \
@@ -411,7 +419,3 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.lge.proximity.delay=25 \
     dalvik.vm.dex2oat-flags=--no-watch-dog \
 	ro.telephony.ril.config=simactivation
-
-# CmUpdater
-PRODUCT_PROPERTY_OVERRIDES += \
-cm.updater.uri=http://vasy.ru/CyanogenModOTA/api
