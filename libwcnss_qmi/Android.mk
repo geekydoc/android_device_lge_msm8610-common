@@ -14,7 +14,7 @@
 # limitations under the License.
 #
 
-ifneq ($(filter w5 w3ds w55ds ,$(TARGET_DEVICE)),)
+ifneq ($(filter l70pn l70pds ,$(TARGET_DEVICE)),)
 
 LOCAL_PATH := $(call my-dir)
 

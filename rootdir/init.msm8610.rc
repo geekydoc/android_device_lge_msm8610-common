@@ -179,7 +179,16 @@ on boot
     chmod 664 /sys/devices/virtual/input/lge_touch/lpwg_data
     chown system radio /sys/devices/virtual/input/lge_touch/lpwg_notify
     chmod 664 /sys/devices/virtual/input/lge_touch/lpwg_notify
-    write /sys/devices/virtual/input/lge_touch/lpwg_notify "1 1 0 0"
+   	chown system system /sys/devices/virtual/input/lge_touch/dt2w_enable
+    chmod 664 /sys/devices/virtual/input/lge_touch/dt2w_enable
+	#The following set up the driver to listen to double tap on the full area of the screen
+	write /sys/devices/virtual/input/lge_touch/lpwg_notify 3 1 0 0
+	write /sys/devices/virtual/input/lge_touch/lpwg_notify 4 2 0 0
+	write /sys/devices/virtual/input/lge_touch/lpwg_notify 8 1 0 0
+
+	# Adaptive LMK
+    write /sys/module/lowmemorykiller/parameters/enable_adaptive_lmk 1
+    write /sys/module/lowmemorykiller/parameters/vmpressure_file_min 53059
 
 on fs
     mkdir /dev/usb-ffs 0770 shell shell
