@@ -134,6 +134,9 @@ com.android.internal.os.DeviceKeyHandler interface. -->
 	<!-- Older rotation sensors are not setting event.timestamp correctly. Setting to true will use SystemClock.elapsedRealtimeNanos() to set timestamp. -->
     <bool name="config_useSystemClockforRotationSensor">true</bool>
 
+    <!-- Disable IpReachability monitor -->
+    <bool name="config_wifi_ipreachability_monitor">false</bool>
+
     <!-- Enable overlay for all location components. -->
     <bool name="config_enableNetworkLocationOverlay" translatable="false">false</bool>
     <string name="config_networkLocationProviderPackageName" translatable="false">com.qualcomm.location</string>
