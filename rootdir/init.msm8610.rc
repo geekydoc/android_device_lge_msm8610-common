@@ -58,7 +58,7 @@ on early-boot
     setrlimit 8 67108864 67108864
     write /sys/kernel/boot_adsp/boot 1
 	# Increase the read-ahead SD card cache
-	write /sys/devices/virtual/bdi/179:0/read_ahead_kb 2048
+	write /sys/block/mmcblk1/bdi/read_ahead_kb 2048
 
 on boot
     # bring CPUs online
