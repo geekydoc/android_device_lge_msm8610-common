@@ -28,7 +28,6 @@ TARGET_SPECIFIC_HEADER_PATH += device/lge/msm8610-common/include
 
 # Vendor Init
 TARGET_UNIFIED_DEVICE := true
-TARGET_INIT_VENDOR_LIB := libinit_fino
 
 # Platform
 TARGET_ARCH := arm
