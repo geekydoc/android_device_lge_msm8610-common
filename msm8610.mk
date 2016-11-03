@@ -46,9 +46,6 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.audio.low_latency.xml:system/etc/permissions/android.hardware.audio.low_latency.xml \
     frameworks/native/data/etc/android.hardware.bluetooth_le.xml:system/etc/permissions/android.hardware.bluetooth_le.xml \
     device/lge/msm8610-common/prebuilt/etc/permissions/com.qualcomm.location.xml:system/etc/permissions/com.qualcomm.location.xml
-#    frameworks/native/data/etc/android.hardware.nfc.xml:system/etc/permissions/android.hardware.nfc.xml \
-#    frameworks/native/data/etc/android.hardware.nfc.hce.xml:system/etc/permissions/android.hardware.nfc.hce.xml \
-#    frameworks/native/data/etc/com.android.nfc_extras.xml:system/etc/permissions/com.android.nfc_extras.xml
 
 # Configs
 PRODUCT_COPY_FILES += \
@@ -196,10 +193,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     device/lge/msm8610-common/prebuilt/egl.cfg:system/lib/egl/egl.cfg
 
-# Opengles version 3
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.opengles.version=196608
-
 # QCOM Display
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.hwc.mdpcomp.enable=true \
@@ -251,21 +244,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     com.qc.hardware=true
 
-# Audio
-PRODUCT_PROPERTY_OVERRIDES += \
-    persist.audio.fluence.mode=endfire \
-    persist.audio.vr.enable=false \
-    persist.audio.handset.mic=digital \
-    ro.qc.sdk.audio.ssr=false
-
-# Bluetooth
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.bluetooth.hfp.ver=1.6 \
-    ro.qualcomm.bluetooth.sap=true \
-    ro.qualcomm.bt.hci_transport=smd \
-    ro.bluetooth.request.master=true \
-    ro.bluetooth.remote.autoconnect=true
-
 # BoringSSL
 PRODUCT_PACKAGES += \
     libboringssl-compat
@@ -278,51 +256,8 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
 	Snap
 
-# Media
-PRODUCT_PROPERTY_OVERRIDES += \
-    lpa.decode=true \
-    af.resampler.quality=255 \
-    persist.audio.lowlatency.rec=false
-
-# WiFi
-PRODUCT_PROPERTY_OVERRIDES += \
-    persist.sys.qc.sub.rstrtlvl=3 \
-    persist.sys.qc.sub.rdump.on=1 \
-    persist.sys.qc.sub.rdump.max=20 \
-    wifi.interface=wlan0 \
-    wifi.supplicant_scan_interval=15
-
-# Media
-PRODUCT_PROPERTY_OVERRIDES += \
-    media.stagefright.enable-player=true \
-    media.stagefright.enable-http=true \
-    media.stagefright.enable-aac=true \
-    media.stagefright.enable-qcp=true \
-    media.stagefright.enable-scan=true \
-    mmp.enable.3g2=true \
-    ro.qualcomm.cabl=0 \
-    use.voice.path.for.pcm.voip=false \
-    qcom.bt.le_dev_pwr_class=1 \
-    ro.qc.sdk.audio.ssr=false \
-    persist.audio.fluence.voicecall=false \
-    persist.audio.fluence.voicerec=false \
-    ro.qc.sdk.audio.fluencetype=none \
-    persist.audio.fluence.speaker=false \
-    use.voice.path.for.pcm.voip=true \
-    use.dedicated.device.for.voip=true \
-    audio.offload.buffer.size.kb=32 \
-    audio.offload.gapless.enabled=false \
-    av.offload.enable=false \
-    av.streaming.offload.enable=false \
-    audio.offload.pcm.enable=false \
-    mm.enable.smoothstreaming=true \
-    persist.audio.calfile0=/etc/ACDB/Bluetooth_cal.acdb \
-    persist.audio.calfile1=/etc/ACDB/General_cal.acdb \
-    persist.audio.calfile2=/etc/ACDB/Global_cal.acdb \
-    persist.audio.calfile3=/etc/ACDB/Handset_cal.acdb \
-    persist.audio.calfile4=/etc/ACDB/Hdmi_cal.acdb \
-    persist.audio.calfile5=/etc/ACDB/Headset_cal.acdb \
-    persist.audio.calfile6=/etc/ACDB/Speaker_cal.acdb
+# System properties
+-include $(LOCAL_PATH)/system_prop.mk
 
 # Media codecs
 PRODUCT_COPY_FILES += \
@@ -330,92 +265,11 @@ PRODUCT_COPY_FILES += \
     frameworks/av/media/libstagefright/data/media_codecs_google_telephony.xml:system/etc/media_codecs_google_telephony.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_video_le.xml:system/etc/media_codecs_google_video_le.xml
 
-# Radio and Telephony
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.use_data_netmgrd=true \
-    ro.ril.transmitpower=true \
-    persist.radio.apm_sim_not_pwdn=1 \
-    persist.radio.call_type=1 \
-    ro.config.vc_call_vol_steps=7 \
-    ro.modem.no_wdog_chk=1 \
-    persist.call_recording.enabled=1
-
 # Keyhandler
 PRODUCT_PACKAGES += \
     com.cyanogenmod.keyhandler
 
-# QC time services
-PRODUCT_PROPERTY_OVERRIDES += \
-    persist.timed.enable=true
-
-# Enable KSM by default
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.ksm.default=1
 
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
 
 $(call inherit-product, vendor/lge/msm8610-common/msm8610-vendor.mk)
-
-PRODUCT_PROPERTY_OVERRIDES += \
-    rild.libpath=/vendor/lib/libril-qc-qmi-1.so \
-    rild.libargs=-d[SPACE]/dev/smd0 \
-    ril.subscription.types=NV,RUIM \
-    persist.radio.proc_nw_scan=0 \
-    DEVICE_PROVISIONED=1 \
-    telephony.lteOnCdmaDevice=0 \
-    ro.telephony.default_network=0 \
-    ro.ril.enable.amr.wideband=1 \
-    ro.lge.proximity.delay=25 \
-    ro.telephony.call_ring.delay=0 \
-    persist.radio.adb_log_on=1 \
-    persist.radio.qcril_am_enabled=1 \
-    wlan.chip.vendor=qcom \
-    wlan.chip.version=wcn \
-    wifi.lge.patch=true \
-    wifi.lge.sleeppolicy=0 \
-    wifi.lge.offdelay=false \
-    wlan.lge.concurrency=MCC \
-    wlan.lge.supportsimaka=YES \
-    wifi.lge.hanglessid=false \
-    drm.service.enabled=true \
-    mmp.enable.3g2=true \
-    media.aac_51_output_enabled=true \
-    mm.enable.smoothstreaming=true \
-    mm.enable.qcom_parser=37491 \
-    vidc.debug.level=0 \
-    ro.qualcomm.sensors.qmd=false \
-    ro.qc.sdk.sensors.gestures=true \
-    ro.qualcomm.sensors.pedometer=false \
-    ro.qc.sensors.step_detector=true \
-    ro.qc.sensors.step_counter=true \
-    ro.qualcomm.sensors.pam=true \
-    ro.qualcomm.sensors.scrn_ortn=true \
-    ro.qualcomm.sensors.smd=true \
-    ro.qualcomm.sensors.game_rv=false \
-    ro.qualcomm.sensors.georv=true \
-    ro.qc.sensors.smgr_mag_cal_en=false \
-    ro.qc.sensors.max_grav_no_gyro=50 \
-    ro.qc.sensors.max_geomag_rotvec=50 \
-    debug.qualcomm.sns.hal=1 \
-    debug.qualcomm.sns.daemon=e \
-    debug.qualcomm.sns.libsensor1=e \
-    persist.sys.ssr.restart_level=3 \
-    persist.sys.strictmode.disable=true \
-    persist.sys.logkit.ctrlcode=0 \
-    ro.lge.irrc.type=sw \
-    persist.debug.wfd.enable=1 \
-    persist.sys.wfd.virtual=0 \
-    tunnel.audio.encode=true \
-    persist.gsm.sms.forcegsm7=1 \
-    ro.qc.sdk.izat.premium_enabled=1 \
-    ro.qc.sdk.izat.service_mask=0x0 \
-    persist.gps.qc_nlp_in_use=0 \
-    ro.gps.agps_provider=1 \
-    persist.qcril.disable_retry=true \
-    persist.service.crash.enable=0 \
-    ro.config.vc_call_vol_steps=6 \
-    persist.data.sbp.update=0 \
-    camera2.portability.force_api=1 \
-    ro.lge.proximity.delay=25 \
-    dalvik.vm.dex2oat-flags=--no-watch-dog \
-	ro.telephony.ril.config=simactivation

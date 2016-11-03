@@ -27,36 +27,29 @@
  
 import init.msm8610.usb.rc
 
-#on early-init
-#    export LD_PRELOAD "/system/lib/libsymbols-compat.so"
 
 on init
 
-    # Boring SSL hacks
+	# Boring SSL hacks
     export LD_SHIM_LIBS /system/vendor/lib/libqomx_jpegenc.so|libboringssl-compat.so
-
 
     # Support legacy paths
     symlink /sdcard /mnt/sdcard
     symlink /sdcard /storage/sdcard0
 
 on post-fs
-    chmod 664 /sys/devices/virtual/input/lge_touch/touch_gesture
-    chown system system /sys/devices/virtual/input/lge_touch/touch_gesture
-    chmod 664 /sys/devices/virtual/input/lge_touch/knock_on_type
-    chown system system /sys/devices/virtual/input/lge_touch/knock_on_type
-    chmod 664 /sys/devices/virtual/input/lge_touch/global_access_pixel
-    chown system system /sys/devices/virtual/input/lge_touch/global_access_pixel
     chmod 664 /sys/devices/virtual/input/lge_touch/lpwg_data
     chown system system /sys/devices/virtual/input/lge_touch/lpwg_data
     chmod 664 /sys/devices/virtual/input/lge_touch/lpwg_notify
     chown system system /sys/devices/virtual/input/lge_touch/lpwg_notify
-    chmod 664 /sys/devices/virtual/input/lge_touch/incoming_call
-    chown system system /sys/devices/virtual/input/lge_touch/incoming_call
-    chmod 664 /sys/devices/virtual/input/lge_touch/lockscreen
-    chown system system /sys/devices/virtual/input/lge_touch/lockscreen
-    chmod 664 /sys/devices/virtual/input/lge_touch/ime_status
-    chown system system /sys/devices/virtual/input/lge_touch/ime_status
+	chmod 664 /sys/devices/virtual/input/lge_touch/dt2w_enable
+   	chown system system /sys/devices/virtual/input/lge_touch/dt2w_enable
+	#The following are needed for tap to wake driver
+	write /sys/devices/virtual/input/lge_touch/lpwg_notify 3 1 0 0
+	write /sys/devices/virtual/input/lge_touch/lpwg_notify 4 2 0 0
+	write /sys/devices/virtual/input/lge_touch/lpwg_notify 8 1 0 0
+
+
     chown system system /sys/devices/virtual/graphics/fb0/kcal
     chmod 0660 /sys/devices/virtual/graphics/fb0/kcal
 
@@ -64,6 +57,8 @@ on early-boot
     # set RLIMIT_MEMLOCK to 64MB
     setrlimit 8 67108864 67108864
     write /sys/kernel/boot_adsp/boot 1
+	# Increase the read-ahead SD card cache
+	write /sys/devices/virtual/bdi/179:0/read_ahead_kb 2048
 
 on boot
     # bring CPUs online
@@ -167,24 +162,16 @@ on boot
     # an ack packet comes out of order
     write /proc/sys/net/netfilter/nf_conntrack_tcp_be_liberal 1
 
-    # NFC local data and nfcee xml storage
+    # NFC local data, NFC symlinks and nfcee xml storage
     mkdir /data/nfc 0770 nfc nfc
     mkdir /data/nfc/param 0770 nfc nfc
+    symlink /dev/pn547 /dev/pn544
+    symlink /dev/pn547 /dev/pn54x
 
     chown media media /dev/msm_IRRC_pcm_dec
     chmod 0660 /dev/msm_IRRC_pcm_dec
 
-	#Tap to wake Driver
-    chown system system /sys/devices/virtual/input/lge_touch/lpwg_data
-    chmod 664 /sys/devices/virtual/input/lge_touch/lpwg_data
-    chown system radio /sys/devices/virtual/input/lge_touch/lpwg_notify
-    chmod 664 /sys/devices/virtual/input/lge_touch/lpwg_notify
-   	chown system system /sys/devices/virtual/input/lge_touch/dt2w_enable
-    chmod 664 /sys/devices/virtual/input/lge_touch/dt2w_enable
-	#The following set up the driver to listen to double tap on the full area of the screen
-	write /sys/devices/virtual/input/lge_touch/lpwg_notify 3 1 0 0
-	write /sys/devices/virtual/input/lge_touch/lpwg_notify 4 2 0 0
-	write /sys/devices/virtual/input/lge_touch/lpwg_notify 8 1 0 0
+	
 
 	# Adaptive LMK
     write /sys/module/lowmemorykiller/parameters/enable_adaptive_lmk 1
