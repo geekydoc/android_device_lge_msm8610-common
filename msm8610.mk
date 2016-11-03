@@ -163,7 +163,10 @@ PRODUCT_PACKAGES += \
 
 # FM radio
 PRODUCT_PACKAGES += \
-	FMRadio \
+	qcom.fmradio \
+    libqcomfm_jni \
+    FM2 \
+    FMRecord \
     libfmjni
 
 # GPS
