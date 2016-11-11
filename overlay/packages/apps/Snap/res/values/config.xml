@@ -34,5 +34,8 @@
 
 	<!-- Enable support for LGE HDR -->
     <bool name="lge_hdr_mode">true</bool>
+	
+	<!-- Enable denoise by default-->
+	<string name="pref_camera_denoise_default" translatable="false">denoise-on</string>
 
 </resources>
