@@ -90,6 +90,10 @@ on boot
     write /sys/bus/msm_subsys/devices/subsys2/restart_level "related"
     write /sys/bus/msm_subsys/devices/subsys3/restart_level "related"
 
+    # Graphics Permissions
+    chown system graphics /sys/class/graphics/fb0/idle_time
+    chmod 0664 /sys/class/graphics/fb0/idle_time
+
     #Create directory used by sensor subsystem(dsps)
     mkdir /data/system/sensors
     chmod 665 /data/system/sensors
