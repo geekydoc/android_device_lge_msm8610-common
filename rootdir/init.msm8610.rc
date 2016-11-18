@@ -27,15 +27,26 @@
  
 import init.msm8610.usb.rc
 
+on early-init
+    mount debugfs debugfs /sys/kernel/debug
+    chown system system /sys/kernel/debug/kgsl/proc
 
 on init
-
-	# Boring SSL hacks
+    # Boring SSL hacks
     export LD_SHIM_LIBS /system/vendor/lib/libqomx_jpegenc.so|libboringssl-compat.so
 
     # Support legacy paths
     symlink /sdcard /mnt/sdcard
     symlink /sdcard /storage/sdcard0
+
+    #Asahi Kasei Microdevices Sensor daemon
+    chown system system /sys/class/compass/akm09911/enable_acc
+    chown system system /sys/class/compass/akm09911/enable_mag
+    chown system system /sys/class/compass/akm09911/enable_fusion
+    chown system system /sys/class/compass/akm09911/delay_acc
+    chown system system /sys/class/compass/akm09911/delay_mag
+    chown system system /sys/class/compass/akm09911/delay_fusion
+    chown system system /sys/class/compass/akm09911/accel
 
 on post-fs
     chmod 664 /sys/devices/virtual/input/lge_touch/lpwg_data
@@ -49,7 +60,6 @@ on post-fs
 	write /sys/devices/virtual/input/lge_touch/lpwg_notify 4 2 0 0
 	write /sys/devices/virtual/input/lge_touch/lpwg_notify 8 1 0 0
 
-
     chown system system /sys/devices/virtual/graphics/fb0/kcal
     chmod 0660 /sys/devices/virtual/graphics/fb0/kcal
 
@@ -57,17 +67,11 @@ on early-boot
     # set RLIMIT_MEMLOCK to 64MB
     setrlimit 8 67108864 67108864
     write /sys/kernel/boot_adsp/boot 1
-	# Increase the read-ahead SD card cache
-	write /sys/block/mmcblk1/bdi/read_ahead_kb 2048
+
+    # Increase the read-ahead SD card cache
+    write /sys/block/mmcblk1/bdi/read_ahead_kb 2048
 
 on boot
-    # bring CPUs online
-    write /sys/module/msm_thermal/core_control/enabled 0
-    write /sys/devices/system/cpu/cpu1/online 1
-    write /sys/devices/system/cpu/cpu2/online 1
-    write /sys/devices/system/cpu/cpu3/online 1
-    write /sys/module/msm_thermal/core_control/enabled 1
-
     #Create QMUX deamon socket area
     mkdir /dev/socket/qmux_radio 0770 radio radio
     chmod 2770 /dev/socket/qmux_radio
@@ -109,8 +113,8 @@ on boot
     chown system system /sys/kernel/ipv4/tcp_delack_seg
     chown system system /sys/kernel/ipv4/tcp_use_userconfig
 
-#   Define TCP buffer sizes for various networks
-#   ReadMin, ReadInitial, ReadMax, WriteMin, WriteInitial, WriteMax,
+    # Define TCP buffer sizes for various networks
+    # ReadMin, ReadInitial, ReadMax, WriteMin, WriteInitial, WriteMax,
     setprop net.tcp.buffersize.default 4096,87380,110208,4096,16384,110208
     setprop net.tcp.buffersize.lte     524288,1048576,2097152,262144,524288,1048576
     setprop net.tcp.buffersize.umts    4094,87380,110208,4096,16384,110208
@@ -123,7 +127,7 @@ on boot
     setprop net.tcp.buffersize.evdo    4094,87380,262144,4096,16384,262144
     setprop net.tcp.buffersize.wifi    524288,2097152,4194304,262144,524288,1048576
 
-# Define TCP delayed ack settings for WiFi & LTE
+    # Define TCP delayed ack settings for WiFi & LTE
     setprop net.tcp.delack.default     1
     setprop net.tcp.delack.wifi        20
     setprop net.tcp.delack.lte         8
@@ -131,8 +135,8 @@ on boot
     setprop net.tcp.usercfg.wifi       1
     setprop net.tcp.usercfg.lte        1
 
-#   Assign TCP buffer thresholds to be ceiling value of technology maximums
-#   Increased technology maximums should be reflected here.
+    # Assign TCP buffer thresholds to be ceiling value of technology maximums
+    # Increased technology maximums should be reflected here.
     write /proc/sys/net/core/rmem_max  2097152
     write /proc/sys/net/core/wmem_max  2097152
 
@@ -182,6 +186,7 @@ on boot
     write /sys/module/lowmemorykiller/parameters/vmpressure_file_min 53059
 
 on fs
+
     mkdir /dev/usb-ffs 0770 shell shell
     mkdir /dev/usb-ffs/adb 0770 shell shell
     mount functionfs adb /dev/usb-ffs/adb uid=2000,gid=2000
@@ -205,6 +210,9 @@ on fs
 
 on post-fs-data
 
+    # Create directory for TZ Apps
+    mkdir /data/misc/qsee 0770 system system
+
     # we will remap this as /mnt/sdcard with the sdcard fuse tool
     mkdir /data/media 0770 media_rw media_rw
     chown media_rw media_rw /data/media
@@ -221,10 +229,10 @@ on post-fs-data
     mkdir /data/misc/wifi 0771 wifi system
     mkdir /data/misc/wifi/sockets 0770 wifi wifi
     mkdir /data/misc/wifi/wpa_supplicant 0770 wifi wifi
-    mkdir /data/misc/dhcp 0770 dhcp dhcp
 
+    # to observe dnsmasq.leases file for dhcp information of soft ap.
+    mkdir /data/misc/dhcp 0770 dhcp dhcp
     chown dhcp dhcp /data/misc/dhcp
-    chown dhcp system /data/misc/dhcp
 
     # Create the directories used by CnE subsystem
     mkdir /data/connectivity 0771 system system
@@ -243,6 +251,7 @@ on post-fs-data
     # We chown/chmod /persist again so because mount is run as root + defaults
     chown system system /persist
     chmod 0771 /persist
+
     # fix sensor daenon
     mkdir /persist/sensors 0775 system root
     write /persist/sensors/sensors_settings 1
@@ -345,20 +354,6 @@ service rmt_storage /system/bin/rmt_storage
     class core
     user root
 
-service bt-dun /system/bin/dun-server /dev/smd7 /dev/rfcomm0
-    class late_start
-    user bluetooth
-    group bluetooth net_bt_admin inet
-    disabled
-    oneshot
-
-service bt-sap /system/bin/sapd 15
-    user bluetooth
-    group bluetooth net_bt_admin
-    class late_start
-    disabled
-    oneshot
-
 service qmuxd /system/bin/qmuxd
     class main
     user radio
@@ -366,16 +361,6 @@ service qmuxd /system/bin/qmuxd
 
 service netmgrd /system/bin/netmgrd
     class main
-
-service sensors /system/bin/sensors.qcom
-    class late_start
-    user root
-    group root radio system
-
-service  sensord  /system/bin/sensord
-    class late_start
-    user root
-    group root radio system
 
 # Adjust socket buffer to enlarge TCP receive window for high bandwidth
 # but only if ro.data.large_tcp_window_size property is set.
@@ -558,15 +543,6 @@ service config_bluetooth /system/bin/sh /system/etc/init.zetaw.bt.sh "onboot"
     user root
     oneshot
 
-#Asahi Kasei Microdevices Sensor daemon
-on init
-    chown system system /sys/class/compass/akm09911/enable_acc
-    chown system system /sys/class/compass/akm09911/enable_mag
-    chown system system /sys/class/compass/akm09911/enable_fusion
-    chown system system /sys/class/compass/akm09911/delay_acc
-    chown system system /sys/class/compass/akm09911/delay_mag
-    chown system system /sys/class/compass/akm09911/delay_fusion
-    chown system system /sys/class/compass/akm09911/accel
 
 service akmd /system/bin/akmd09911 -m 6
    	class main
@@ -661,7 +637,3 @@ service fm_dl /system/bin/sh /system/etc/init.qcom.fm.sh
     disabled
     oneshot
 
-service time_daemon /system/bin/time_daemon
-   class late_start
-   user root
-   group root
