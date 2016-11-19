@@ -23,10 +23,24 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.data.large_tcp_window_size=true \
     wifi.interface=wlan0 \
     wifi.supplicant_scan_interval=15
+    
+# QCOM Display
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.hwc.mdpcomp.enable=true \
+    debug.sf.fb_always_on=1 \
+    debug.composition.type=gpu \
+    debug.gralloc.map_fb_memory=0 \
+    debug.hwc.dynThreshold=1.5 \
+    dalvik.vm.heapsize=36m \
+    dev.pm.dyn_samplingrate=1
+    
+# QCOM HARDWARE
+PRODUCT_PROPERTY_OVERRIDES += \
+    com.qc.hardware=true
 
 # Telephony properties
 PRODUCT_PROPERTY_OVERRIDES += \
-	ro.config.vc_call_vol_steps=10 \
+    ro.config.vc_call_vol_steps=10 \
     persist.radio.proc_nw_scan=0 \
     ro.use_data_netmgrd=true \
     persist.data.netmgrd.qos.enable=true \
