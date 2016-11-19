@@ -251,9 +251,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     com.qc.hardware=true
 
-# BoringSSL
+# Compatibility
 PRODUCT_PACKAGES += \
-    libboringssl-compat
+    libboringssl-compat \
+    libshim_qc-opt 
 
 # Gello
 PRODUCT_PACKAGES += \
