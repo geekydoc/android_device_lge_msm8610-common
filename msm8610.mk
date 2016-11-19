@@ -200,15 +200,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     device/lge/msm8610-common/prebuilt/egl.cfg:system/lib/egl/egl.cfg
 
-# QCOM Display
-PRODUCT_PROPERTY_OVERRIDES += \
-    persist.hwc.mdpcomp.enable=true \
-    debug.sf.fb_always_on=1 \
-    debug.composition.type=gpu \
-    debug.gralloc.map_fb_memory=0 \
-    debug.hwc.dynThreshold=1.5 \
-    dalvik.vm.heapsize=36m \
-    dev.pm.dyn_samplingrate=1
 
 # QCOM Display
 PRODUCT_PACKAGES += \
@@ -247,9 +238,7 @@ PRODUCT_PACKAGES += \
     hostapd_default.conf \
     libnetcmdiface
 
-# QCOM
-PRODUCT_PROPERTY_OVERRIDES += \
-    com.qc.hardware=true
+
 
 # BoringSSL
 PRODUCT_PACKAGES += \
