@@ -1,2 +1,2 @@
-# Partitions
-type logs_block_device, dev_type;
+type lge_touch_sysfs, dev_type;
+type wpa_device, dev_type;

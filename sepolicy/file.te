@@ -1,23 +1,4 @@
-# Battery health
-type batt_health_data_file, file_type, data_file_type;
-type sysfs_batt_health, fs_type, sysfs_type;
-
-# hw_revs
-type hw_revs_data_file, file_type, data_file_type;
-
-# CMHW
-type display_sysfs, fs_type, sysfs_type;
-type vibeamp_sysfs, fs_type, sysfs_type;
-
-# fsg
-type moto_firmware, file_type;
-type fsg_file, fs_type, contextmount_type;
-
-# PDS
-type pds_file, file_type;
-
-# Power
-type sysfs_power, sysfs_type;
-
-# Light
-type sysfs_light, sysfs_type;
+type kcal_dev, file_type;
+type vibe_dev, file_type;
+type touchpanel_sysfs, sysfs_type, file_type;
+type hwaddrs_data_file, file_type, data_file_type;

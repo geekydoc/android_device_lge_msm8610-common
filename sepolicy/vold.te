@@ -1,4 +1,0 @@
-#============= vold ==============
-allow vold userdata_block_device:blk_file rw_file_perms;
-allow vold firmware_file:dir search;
-allow vold firmware_file:file r_file_perms;
