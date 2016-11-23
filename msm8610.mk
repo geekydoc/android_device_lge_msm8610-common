@@ -151,7 +151,6 @@ PRODUCT_PACKAGES += \
     p2p_supplicant_overlay.conf \
     wpa_supplicant_overlay.conf \
     libwcnss_qmi \
-    dhcpcd.conf \
     hostapd \
     wpa_supplicant \
     wpa_supplicant.conf
