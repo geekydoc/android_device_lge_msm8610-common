@@ -156,6 +156,10 @@ PRODUCT_PACKAGES += \
     wpa_supplicant \
     wpa_supplicant.conf
 
+# Telephony-ext
+PRODUCT_PACKAGES += telephony-ext
+PRODUCT_BOOT_JARS += telephony-ext
+
 # Charger
 PRODUCT_PACKAGES += charger charger_res_images
 
