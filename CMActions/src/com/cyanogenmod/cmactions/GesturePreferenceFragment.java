@@ -16,18 +16,13 @@
 
 package com.cyanogenmod.cmactions;
 
-import android.app.ActionBar;
 import android.os.Bundle;
-import android.preference.Preference;
-import android.preference.PreferenceActivity;
-import android.preference.SwitchPreference;
+import android.support.v14.preference.PreferenceFragment;
+import android.support.v14.preference.SwitchPreference;
+import android.support.v7.preference.Preference;
 import android.provider.Settings;
-import android.view.Menu;
-import android.view.MenuItem;
 
-import org.cyanogenmod.internal.util.ScreenType;
-
-public class GestureSettings extends PreferenceActivity {
+public class GesturePreferenceFragment extends PreferenceFragment {
 
     private static final String KEY_AMBIENT_DISPLAY_ENABLE = "ambient_display_enable";
     private static final String KEY_GESTURE_POCKET = "gesture_pocket";
@@ -38,8 +33,7 @@ public class GestureSettings extends PreferenceActivity {
     private SwitchPreference mHandwavePreference;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         addPreferencesFromResource(R.xml.gesture_panel);
         boolean dozeEnabled = isDozeEnabled();
         mAmbientDisplayPreference =
@@ -53,38 +47,15 @@ public class GestureSettings extends PreferenceActivity {
         mHandwavePreference =
             (SwitchPreference) findPreference(KEY_GESTURE_HAND_WAVE);
         mHandwavePreference.setEnabled(dozeEnabled);
-
-        final ActionBar bar = getActionBar();
-        bar.setDisplayHomeAsUpEnabled(true);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                onBackPressed();
-                return true;
-        }
-        return false;
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-        // If running on a phone, remove padding around the listview
-        if (!ScreenType.isTablet(this)) {
-            getListView().setPadding(0, 0, 0, 0);
-        }
     }
 
     private boolean enableDoze(boolean enable) {
-        return Settings.Secure.putInt(getContentResolver(),
+        return Settings.Secure.putInt(getActivity().getContentResolver(),
                 Settings.Secure.DOZE_ENABLED, enable ? 1 : 0);
     }
 
     private boolean isDozeEnabled() {
-        return Settings.Secure.getInt(getContentResolver(),
+        return Settings.Secure.getInt(getActivity().getContentResolver(),
                 Settings.Secure.DOZE_ENABLED, 1) != 0;
     }
 
