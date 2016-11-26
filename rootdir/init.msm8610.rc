@@ -530,9 +530,9 @@ service adsprpcd /system/bin/adsprpcd
    group media
 
 service wcnss-service /system/bin/wcnss_service
-   class late_start
+   class main
    user root
-   group system wifi
+   group system wifi radio
    oneshot
 
 service config_bluetooth /system/bin/sh /system/etc/init.zetaw.bt.sh "onboot"
