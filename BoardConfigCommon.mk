@@ -41,14 +41,8 @@ ARCH_ARM_HAVE_TLS_REGISTER := true
 TARGET_BOOTLOADER_BOARD_NAME := MSM8610
 MALLOC_SVELTE := true
 USE_CLANG_PLATFORM_BUILD := true
-BOARD_GLOBAL_CFLAGS += -mfpu=neon -mfloat-abi=softfp
-BOARD_GLOBAL_CPPFLAGS += -mfpu=neon -mfloat-abi=softfp
-
 TARGET_GLOBAL_CFLAGS += -mtune=cortex-a7 -mfpu=neon-vfpv4 -mfloat-abi=softfp
 TARGET_GLOBAL_CPPFLAGS += -mtune=cortex-a7 -mfpu=neon-vfpv4 -mfloat-abi=softfp
-
-#Use dlmalloc instead of jemalloc for mallocs
-MALLOC_IMPL := dlmalloc
 
 # Kernel image
 BOARD_KERNEL_SEPARATED_DT := true
