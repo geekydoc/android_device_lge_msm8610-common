@@ -24,9 +24,10 @@ public class DisplayColorCalibration {
     private static final String KCAL_TUNING_FILE = "/sys/devices/virtual/graphics/fb0/kcal";
 
     public static boolean isSupported() {
-        File file = new File(KCAL_TUNING_FILE);
-        return file.exists();
-    }
+         if (FileUtils.isFileWritable(KCAL_TUNING_FILE)) {
+                return true;
+		}    
+	}
 
     public static int getMaxValue() {
         return 255;
