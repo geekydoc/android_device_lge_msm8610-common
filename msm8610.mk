@@ -240,10 +240,9 @@ PRODUCT_PACKAGES += \
 
 
 
-# Compatibility
+# BoringSSL
 PRODUCT_PACKAGES += \
-    libboringssl-compat \
-    libshim_qc-opt 
+    libboringssl-compat
 
 # Gello
 PRODUCT_PACKAGES += \
