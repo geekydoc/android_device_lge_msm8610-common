@@ -27,6 +27,7 @@ public class DisplayColorCalibration {
          if (FileUtils.isFileWritable(KCAL_TUNING_FILE)) {
                 return true;
 		}    
+		return false;
 	}
 
     public static int getMaxValue() {
