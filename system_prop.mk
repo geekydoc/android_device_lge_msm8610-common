@@ -56,6 +56,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Bluetooth
 PRODUCT_PROPERTY_OVERRIDES += \
+	qcom.bluetooth.soc=smd \
     ro.qualcomm.bt.hci_transport=smd \
     ro.bluetooth.request.master=true 
 
