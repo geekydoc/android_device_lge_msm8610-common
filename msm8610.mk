@@ -65,13 +65,14 @@ PRODUCT_COPY_FILES += \
     device/lge/msm8610-common/prebuilt/usr/idc/touch_dev.idc:system/usr/idc/touch_dev.idc \
     device/lge/msm8610-common/prebuilt/usr/keylayout/gpio-keys.kl:system/usr/keylayout/gpio-keys.kl \
     device/lge/msm8610-common/prebuilt/etc/init.crda.sh:system/etc/init.crda.sh \
-    device/lge/msm8610-common/prebuilt/etc/sap.conf:system/etc/sap.conf \
-    device/lge/msm8610-common/prebuilt/etc/gps.conf:system/etc/gps.conf \
+    device/lge/msm8610-common/gps/etc/sap.conf:system/etc/sap.conf \
+    device/lge/msm8610-common/gps/etc/flp.conf:system/etc/flp.conf \
+    device/lge/msm8610-common/gps/etc/gps.conf:system/etc/gps.conf \
     device/lge/msm8610-common/prebuilt/etc/msap.conf:system/etc/msap.conf \
     device/lge/msm8610-common/prebuilt/etc/clatd.conf:system/etc/clatd.conf \
     device/lge/msm8610-common/prebuilt/etc/sec_config:system/etc/sec_config \
-    device/lge/msm8610-common/prebuilt/etc/izat.conf:system/etc/izat.conf \
-    device/lge/msm8610-common/prebuilt/etc/quipc.conf:system/etc/quipc.conf \
+    device/lge/msm8610-common/gps/etc/izat.conf:system/etc/izat.conf \
+    device/lge/msm8610-common/gps/etc/quipc.conf:system/etc/quipc.conf \
 	device/lge/msm8610-common/prebuilt/etc/init.qcom.fm.sh:system/etc/init.qcom.fm.sh
 
 
