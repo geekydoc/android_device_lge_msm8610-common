@@ -22,7 +22,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.data.large_tcp_window_size=true \
     wifi.interface=wlan0 \
-    wifi.supplicant_scan_interval=15
+    wifi.supplicant_scan_interval=15 \
+	wlan.driver.config=/system/etc/firmware/wlan/prima/WCNSS_qcom_cfg.ini
     
 # QCOM Display
 PRODUCT_PROPERTY_OVERRIDES += \
