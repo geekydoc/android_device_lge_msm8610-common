@@ -305,8 +305,53 @@ on post-fs-data
     chmod 0644 /sys/devices/system/cpu/cpufreq/interactive/up_threshold_any_cpu_freq
     chown system system /sys/devices/system/cpu/cpufreq/interactive/up_threshold_any_cpu_load
     chmod 0644 /sys/devices/system/cpu/cpufreq/interactive/up_threshold_any_cpu_load
+	chmod 0644 /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
+	chmod 0644 /sys/devices/system/cpu/cpu1/cpufreq/scaling_max_freq
     chown system system /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
-    chown system system /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
+	chown system system /sys/devices/system/cpu/cpu1/cpufreq/scaling_max_freq
+	
+	#Set up the cpu-boost driver | Currently, input boost is limited only to the first cpu core
+	chmod 0644 /sys/module/cpu_boost/parameters/input_boost_ms
+	chwon system system /sys/module/cpu_boost/parameters/input_boost_ms
+	write /sys/module/cpu_boost/parameters/input_boost_ms 1000
+	chmod 0644 /sys/module/cpu_boost/parameters/wakeup_boost
+	chwon system system /sys/module/cpu_boost/parameters/wakeup_boost
+	write /sys/module/cpu_boost/parameters/wakeup_boost Y
+	chmod 0644 /sys/module/cpu_boost/parameters/input_boost_freq
+	chwon system system /sys/module/cpu_boost/parameters/input_boost_freq
+	write /sys/module/cpu_boost/parameters/input_boost_freq "0:1190400"
+
+	#Set up the hotplug driver
+	chmod 0644 /sys/kernel/intelli_plug/intelli_plug_active
+	chwon system system /sys/kernel/intelli_plug/intelli_plug_active
+	write /sys/kernel/intelli_plug/intelli_plug_active 1
+    chmod 0644 /sys/kernel/intelli_plug/min_cpus_online
+    chmod 0644 /sys/kernel/intelli_plug/max_cpus_online
+	chown system system /sys/kernel/intelli_plug/min_cpus_online
+    chown system system /sys/kernel/intelli_plug/max_cpus_online
+	write /sys/kernel/intelli_plug/min_cpus_online 1
+	write /sys/kernel/intelli_plug/max_cpus_online 4
+	chomd 0644 /sys/kernel/intelli_plug/full_mode_profile
+	chown system system /sys/kernel/intelli_plug/full_mode_profile
+	write /sys/kernel/intelli_plug/full_mode_profile 2
+	chomd 0644 /sys/kernel/intelli_plug/suspend_defer_time
+	chwon system system /sys/kernel/intelli_plug/suspend _defer_time
+	write /sys/kernel/intelli_plug/suspend_defer_time 10
+	chomd 0644 /sys/kernel/intelli_plug/max_cpus_online_susp
+	chown system system /sys/kernel/intelli_plug/max_cpus_online_susp
+	write /sys/kernel/intelli_plug/max_cpus_online_susp 1
+	chomd 0644 /sys/kernel/intelli_plug/cpus_boosted
+	chown system system /sys/kernel/intelli_plug/cpus_boosted
+	write /sys/kernel/intelli_plug/cpus_boosted 2
+
+
+	#Set up the thermal subsystem
+	write /sys/module/msm_thermal_v2/core_control/enabled 0		
+	write /sys/module/msm_thermal_v2/parameters/enabled Y
+	write /sys/module/msm_thermal_v2/parameters/limit_temp_degC 65
+	write /sys/module/msm_thermal_v2/parameters/core_limit_temp_degC 70
+	write /sys/module/msm_thermal_v2/parameters/poll_ms	3000
+	
 
     # Allow Torch app use torch
     chown system system /sys/class/leds/led:flash_torch/brightness
@@ -434,10 +479,6 @@ on property:ro.bootmode=chargerlogo
     class_reset late_start
     class_start charger
 
-service loc_launcher /system/bin/loc_launcher
-    #loc_launcher will start as root and set its uid to gps
-    class late_start
-    group gps qcom_oncrpc inet net_raw qcom_diag net_admin wifi
 
 service qseecomd /system/bin/qseecomd
     class core
@@ -465,15 +506,8 @@ service time_daemon /system/bin/time_daemon
    user root
    group root
 
-service mpdecision /system/bin/mpdecision --avg_comp
-   class main
-   user root
-   group system
 
-service thermal-engine /system/vendor/bin/thermal-engine
-   class main
-   user root
-   group root
+
 
 service charger /sbin/healthd -c
     class charger
@@ -580,7 +614,6 @@ on property:sys.boot_completed=1
     chmod 0664 /sys/devices/system/cpu/cpu2/online
     chmod 0664 /sys/devices/system/cpu/cpu3/online
 
-    start mpdecision
 
 service fm_dl /system/bin/sh /system/etc/init.qcom.fm.sh
     class late_start

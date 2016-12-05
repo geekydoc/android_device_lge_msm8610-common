@@ -85,9 +85,7 @@ OVERRIDE_RS_DRIVER := libRSDriver_adreno.so
 MAX_EGL_CACHE_KEY_SIZE := 12*1024
 MAX_EGL_CACHE_SIZE := 2048*1024
 
-# Use qcom power hal
-TARGET_POWERHAL_VARIANT := qcom
-TARGET_USES_CPU_BOOST_HINT := true
+# Use custom power hal
 TARGET_TAP_TO_WAKE_NODE := /sys/devices/virtual/input/lge_touch/dt2w_enable
 
 # Hardware tunables framework
