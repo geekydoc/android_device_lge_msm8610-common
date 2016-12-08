@@ -55,9 +55,9 @@ on post-fs
 	chmod 664 /sys/devices/virtual/input/lge_touch/dt2w_enable
    	chown system system /sys/devices/virtual/input/lge_touch/dt2w_enable
 	#The following are needed for tap to wake driver
-	write /sys/devices/virtual/input/lge_touch/lpwg_notify 3 1 0 0
-	write /sys/devices/virtual/input/lge_touch/lpwg_notify 4 2 0 0
-	write /sys/devices/virtual/input/lge_touch/lpwg_notify 8 1 0 0
+	write /sys/devices/virtual/input/lge_touch/lpwg_notify "3 1 0 0"
+	write /sys/devices/virtual/input/lge_touch/lpwg_notify "4 2 0 0"
+	write /sys/devices/virtual/input/lge_touch/lpwg_notify "8 1 0 0"
 
     chown system system /sys/devices/virtual/graphics/fb0/kcal
     chmod 0660 /sys/devices/virtual/graphics/fb0/kcal
