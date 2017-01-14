@@ -14,6 +14,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
     debug.qualcomm.sns.daemon=e \
     debug.qualcomm.sns.libsensor1=e
 
+# Storage
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.sys.sdcardfs=true
+
 #Camera properties
 PRODUCT_PROPERTY_OVERRIDES += \
     camera2.portability.force_api=1 \
