@@ -225,8 +225,8 @@ PRODUCT_PACKAGES += \
     libOmxAmrEnc \
     libOmxEvrcEnc \
     libOmxQcelp13Enc \
-    libdashplayer \
-    qcmediaplayer
+
+
 
 # Filesystem management tools
 PRODUCT_PACKAGES += \
