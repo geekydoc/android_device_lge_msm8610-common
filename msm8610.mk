@@ -246,8 +246,7 @@ PRODUCT_PACKAGES += \
 
 # Compatibility
 PRODUCT_PACKAGES += \
-    libboringssl-compat \
-    libshim_qc-opt 
+    libboringssl-compat
 
 # Gello
 PRODUCT_PACKAGES += \
