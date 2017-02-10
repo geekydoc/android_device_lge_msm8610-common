@@ -1,45 +1,58 @@
-/data/cam_socket1		u:object_r:camera_socket:s0
-/data/cam_socket2		u:object_r:camera_socket:s0
+# Camera
+/data/cam_socket1		                                u:object_r:camera_socket:s0
+/data/cam_socket2		                                u:object_r:camera_socket:s0
 
-/data/system/default_values	u:object_r:mpctl_data_file:s0
+/data/system/default_values	                                u:object_r:mpctl_data_file:s0
 
-/dev/pn547			u:object_r:nfc_device:s0
-/dev/rfkill			u:object_r:wpa_device:s0
-/dev/K3DH			u:object_r:sensors_device:s0
-/dev/akm09911 		u:object_r:sensors_device:s0
-/dev/akm09911_dev	u:object_r:sensors_device:s0
+# NFC
+/dev/pn547			                                u:object_r:nfc_device:s0
+/dev/rfkill			                                u:object_r:wpa_device:s0
 
-/persist/sensors/sensors_settings	u:object_r:sensors_persist_file:s0
-/persist-lg(/.*)?			u:object_r:persist_drm_file:s0
+# Sensors
+/dev/K3DH			                                u:object_r:sensors_device:s0
+/dev/akm09911 		                                        u:object_r:sensors_device:s0
+/dev/akm09911_dev	                                        u:object_r:sensors_device:s0
+/data/misc/akmd_set\.txt                                        u:object_r:akmd09911_access_file1:s0
 
-/sys/devices/platform/kcal_ctrl.0(/.*)?			u:object_r:kcal_dev:s0
-/sys/bus/platform/drivers/kcal_ctrl(/.*)?		u:object_r:kcal_dev:s0
-/sys/devices/virtual/input/lge_touch/dt2w_enable			u:object_r:lge_touch_sysfs:s0
-/sys/devices/virtual/input/lge_touch/lpwg_notify			u:object_r:lge_touch_sysfs_prop:s0
-/sys/devices/platform/tspdrv/nforce_timed		u:object_r:vibe_dev:s0
+# Persist firmware filesystem
+/persist/sensors/sensors_settings	                        u:object_r:sensors_persist_file:s0
+/persist-lg(/.*)?			                        u:object_r:persist_drm_file:s0
 
-/sns(/.*)?			u:object_r:sensors_persist_file:s0
+/sys/devices/platform/kcal_ctrl.0(/.*)?			        u:object_r:kcal_dev:s0
+/sys/bus/platform/drivers/kcal_ctrl(/.*)?		        u:object_r:kcal_dev:s0
+/sys/devices/virtual/input/lge_touch/dt2w_enable		u:object_r:lge_touch_sysfs:s0
+/sys/devices/virtual/input/lge_touch/lpwg_notify		u:object_r:lge_touch_sysfs_prop:s0
+/sys/devices/platform/tspdrv/nforce_timed		        u:object_r:vibe_dev:s0
 
-/data/misc/bdaddr		u:object_r:hwaddrs_data_file:s0
-/data/misc/wifi/config		u:object_r:hwaddrs_data_file:s0
-/system/bin/hwaddrs		u:object_r:hwaddrs_exec:s0
-/system/bin/bdaddr_loader	u:object_r:hwaddrs_exec:s0
+/sns(/.*)?			                                u:object_r:sensors_persist_file:s0
 
-/data/misc/sensor(/.*)?			u:object_r:sensors_data_file:s0
-/system/bin/akmd09911   u:object_r:akmd09911_exec:s0
+/data/misc/bdaddr		                                u:object_r:hwaddrs_data_file:s0
+/data/misc/wifi/config		                                u:object_r:hwaddrs_data_file:s0
+/system/bin/hwaddrs		                                u:object_r:hwaddrs_exec:s0
+/system/bin/bdaddr_loader	                                u:object_r:hwaddrs_exec:s0
 
+/data/misc/sensor(/.*)?			                        u:object_r:sensors_data_file:s0
+/system/bin/akmd09911                                           u:object_r:akmd09911_exec:s0
+
+# GPU
+/sys/devices/fdc00000\.qcom,kgsl-3d0/kgsl/kgsl-3d0/gpuclk       u:object_r:sysfs_thermal:s0
+/sys/devices/fdc00000\.qcom,kgsl-3d0/kgsl/kgsl-3d0/max_gpuclk   u:object_r:sysfs_thermal:s0
+/sys/devices/fdc00000\.qcom,kgsl-3d0/kgsl/kgsl-3d0/reset_count  u:object_r:sysfs_thermal:s0
 
 # Primary storage device nodes
-#
-/dev/block/platform/msm_sdcc\.1/by-name/boot                  u:object_r:boot_block_device:s0
-/dev/block/platform/msm_sdcc\.1/by-name/recovery              u:object_r:recovery_block_device:s0
-/dev/block/platform/msm_sdcc\.1/by-name/fsg                   u:object_r:modem_efs_partition_device:s0
-/dev/block/platform/msm_sdcc\.1/by-name/fsc                   u:object_r:modem_efs_partition_device:s0
-/dev/block/platform/msm_sdcc\.1/by-name/modemst1              u:object_r:modem_efs_partition_device:s0
-/dev/block/platform/msm_sdcc\.1/by-name/modemst2              u:object_r:modem_efs_partition_device:s0
-/dev/block/platform/msm_sdcc\.1/by-name/ssd                   u:object_r:ssd_device:s0
-/dev/block/platform/msm_sdcc\.1/by-name/userdata              u:object_r:userdata_block_device:s0
-/dev/block/platform/msm_sdcc\.1/by-name/cache                 u:object_r:cache_block_device:s0
-/dev/block/mmcblk0                                            u:object_r:root_block_device:s0
-/dev/block/mmcblk0rpmb                                        u:object_r:rpmb_device:s0
-/dev/block/platform/msm_sdcc\.1/by-name/config                u:object_r:frp_block_device:s0
+
+/dev/block/mmcblk0                                    	        u:object_r:root_block_device:s0
+/dev/block/mmcblk0rpmb                                          u:object_r:rpmb_device:s0
+/dev/block/platform/msm_sdcc\.1/by-name/boot                    u:object_r:boot_block_device:s0
+/dev/block/platform/msm_sdcc\.1/by-name/recovery                u:object_r:recovery_block_device:s0
+/dev/block/platform/msm_sdcc\.1/by-name/fsg                     u:object_r:modem_efs_partition_device:s0
+/dev/block/platform/msm_sdcc\.1/by-name/fsc                     u:object_r:modem_efs_partition_device:s0
+/dev/block/platform/msm_sdcc\.1/by-name/modemst1                u:object_r:modem_efs_partition_device:s0
+/dev/block/platform/msm_sdcc\.1/by-name/modemst2                u:object_r:modem_efs_partition_device:s0
+/dev/block/platform/msm_sdcc\.1/by-name/ssd                     u:object_r:ssd_device:s0
+/dev/block/platform/msm_sdcc\.1/by-name/userdata                u:object_r:userdata_block_device:s0
+/dev/block/platform/msm_sdcc\.1/by-name/cache                   u:object_r:cache_block_device:s0
+/dev/block/platform/msm_sdcc\.1/by-name/config                  u:object_r:frp_block_device:s0
+
+
+/sys/devices/qpnp-charger\.*/power_supply/battery(/.*)?         u:object_r:sysfs_battery_supply:s0
