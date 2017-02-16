@@ -42,7 +42,7 @@ typedef struct governor_settings {
 static power_profile profiles[PROFILE_MAX] = {
     [PROFILE_POWER_SAVE] = {
 		.boost = 0,
-        .boostpulse_duration = 60000,
+        .boostpulse_duration = 200000,
         .go_hispeed_load = 80,
         .go_hispeed_load_off = 110,
         .hispeed_freq = 787200,
@@ -58,7 +58,7 @@ static power_profile profiles[PROFILE_MAX] = {
     },
     [PROFILE_BALANCED] = {
         .boost = 0,
-        .boostpulse_duration = 80000,
+        .boostpulse_duration = 800000,
         .go_hispeed_load = 95,
         .go_hispeed_load_off = 60,
         .hispeed_freq = 787200,
