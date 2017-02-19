@@ -1,2 +1,3 @@
 allow bootanim socket_device:sock_file write;
 
+allow bootanim sysfs_thermal:file r_file_perms;

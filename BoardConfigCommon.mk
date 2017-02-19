@@ -47,13 +47,19 @@ BOARD_GLOBAL_CPPFLAGS += -mtune=cortex-a7 -mfpu=neon-vfpv4 -mfloat-abi=softfp
 # Kernel image
 BOARD_KERNEL_SEPARATED_DT := true
 TARGET_KERNEL_SOURCE := kernel/lge/msm8610
-BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 androidboot.selinux=enforcing user_debug=23 msm_rtb.filter=0x37 androidboot.hardware=msm8610
+BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 androidboot.selinux=permissive user_debug=23 msm_rtb.filter=0x37 androidboot.hardware=msm8610
 BOARD_KERNEL_BASE := 0x00000000
 BOARD_KERNEL_PAGESIZE := 2048
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x01000000 --tags_offset 0x00000100
 KERNEL_TOOLCHAIN := $(ANDROID_BUILD_TOP)/prebuilts/gcc/$(HOST_OS)-x86/arm/arm-eabi-4.8/bin
 TARGET_KERNEL_CROSS_COMPILE_PREFIX := arm-eabi-
 
+
+KERNEL_TOOLCHAIN := $(ANDROID_BUILD_TOP)/prebuilts/gcc/$(HOST_OS)-x86/arm/arm-eabi-4.8/bin
+TARGET_KERNEL_CROSS_COMPILE_PREFIX := arm-eabi-
+
+# Use Snapdragon LLVM, if available
+TARGET_USE_SDCLANG := true
 
 # Offmode Charging
 BOARD_GLOBAL_CFLAGS += \
@@ -74,6 +80,7 @@ AUDIO_FEATURE_ENABLED_HWDEP_CAL := true
 AUDIO_FEATURE_ENABLED_FM_POWER_OPT := true
 BOARD_HAVE_QCOM_FM := true
 TARGET_QCOM_NO_FM_FIRMWARE := true
+BOARD_HAVE_QCOM_FM := true
 
 # GPS
 TARGET_NO_RPC := true

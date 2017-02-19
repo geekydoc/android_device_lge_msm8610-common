@@ -7,10 +7,15 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.hwc.mdpcomp.enable=true \
     persist.timed.enable=true \
     ro.opengles.version=196608 \
+    ro.qualcomm.perf.cores_online=2 \
     dalvik.vm.dex2oat-flags=--no-watch-dog \
     debug.qualcomm.sns.hal=0 \
     debug.qualcomm.sns.daemon=e \
     debug.qualcomm.sns.libsensor1=e
+
+# Storage
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.sys.sdcardfs=true
 
 #Camera properties
 PRODUCT_PROPERTY_OVERRIDES += \

@@ -225,8 +225,8 @@ PRODUCT_PACKAGES += \
     libOmxAmrEnc \
     libOmxEvrcEnc \
     libOmxQcelp13Enc \
-    libdashplayer \
-    qcmediaplayer
+
+
 
 # Filesystem management tools
 PRODUCT_PACKAGES += \
@@ -244,7 +244,7 @@ PRODUCT_PACKAGES += \
 
 
 
-# Compatibility
+# BoringSSL
 PRODUCT_PACKAGES += \
     libboringssl-compat
 

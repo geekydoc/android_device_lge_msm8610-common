@@ -1,3 +1,4 @@
+
 # akmd09911 service
 type akmd09911, domain;
 type akmd09911_exec, exec_type, file_type;
@@ -5,4 +6,5 @@ type akmd09911_exec, exec_type, file_type;
 init_daemon_domain(akmd09911)
 
 allow akmd09911 sensors_device:chr_file { read open write ioctl };
+allow akmd09911 akmd09911_access_file1:file { open read write getattr setattr };
 
