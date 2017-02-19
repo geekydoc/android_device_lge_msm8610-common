@@ -54,10 +54,6 @@ BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x01000000 --tags_offset 0x00000100
 KERNEL_TOOLCHAIN := $(ANDROID_BUILD_TOP)/prebuilts/gcc/$(HOST_OS)-x86/arm/arm-eabi-4.8/bin
 TARGET_KERNEL_CROSS_COMPILE_PREFIX := arm-eabi-
 
-
-KERNEL_TOOLCHAIN := $(ANDROID_BUILD_TOP)/prebuilts/gcc/$(HOST_OS)-x86/arm/arm-eabi-4.8/bin
-TARGET_KERNEL_CROSS_COMPILE_PREFIX := arm-eabi-
-
 # Use Snapdragon LLVM, if available
 TARGET_USE_SDCLANG := true
 
@@ -78,7 +74,6 @@ AUDIO_FEATURE_ENABLED_HWDEP_CAL := true
 
 #FM
 AUDIO_FEATURE_ENABLED_FM_POWER_OPT := true
-BOARD_HAVE_QCOM_FM := true
 TARGET_QCOM_NO_FM_FIRMWARE := true
 BOARD_HAVE_QCOM_FM := true
 
