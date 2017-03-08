@@ -243,6 +243,10 @@ PRODUCT_PACKAGES += \
     libnetcmdiface
 
 
+# Sensors
+PRODUCT_PACKAGES += \
+	sensors.msm8610
+
 
 # BoringSSL
 PRODUCT_PACKAGES += \
