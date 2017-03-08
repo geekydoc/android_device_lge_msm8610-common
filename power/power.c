@@ -33,7 +33,6 @@
 
 #define CPU_PATH "/sys/devices/system/cpu/"
 #define CPUBOOST_PATH "/sys/module/cpu_boost/"
-#define HOTPLUG_PATH "/sys/kernel/intelli_plug/"
 #define INTERACTIVE_PATH "/sys/devices/system/cpu/cpufreq/interactive/"
 
 static pthread_mutex_t lock = PTHREAD_MUTEX_INITIALIZER;
@@ -114,26 +113,14 @@ static void power_set_interactive(__attribute__((unused)) struct power_module *m
 
     // break out early if governor is not interactive
     if (!check_governor()) return;
-
-    if (on) {
-        sysfs_write_int(INTERACTIVE_PATH "hispeed_freq",
+    sysfs_write_int(INTERACTIVE_PATH "hispeed_freq",
                         profiles[current_power_profile].hispeed_freq);
-        sysfs_write_int(INTERACTIVE_PATH "go_hispeed_load",
+    sysfs_write_int(INTERACTIVE_PATH "go_hispeed_load",
                         profiles[current_power_profile].go_hispeed_load);
-        sysfs_write_int(INTERACTIVE_PATH "timer_rate",
+    sysfs_write_int(INTERACTIVE_PATH "timer_rate",
                         profiles[current_power_profile].timer_rate);
-        sysfs_write_str(INTERACTIVE_PATH "target_loads",
+    sysfs_write_str(INTERACTIVE_PATH "target_loads",
                         profiles[current_power_profile].target_loads);
-    } else {
-        sysfs_write_int(INTERACTIVE_PATH "hispeed_freq",
-                        profiles[current_power_profile].hispeed_freq_off);
-        sysfs_write_int(INTERACTIVE_PATH "timer_rate",
-                        profiles[current_power_profile].timer_rate_off);
-        sysfs_write_int(INTERACTIVE_PATH "go_hispeed_load",
-                        profiles[current_power_profile].go_hispeed_load_off);
-        sysfs_write_str(INTERACTIVE_PATH "target_loads",
-                        profiles[current_power_profile].target_loads_off);
-    }
 }
 
 static void set_power_profile(int profile)
@@ -171,23 +158,6 @@ static void set_power_profile(int profile)
                     profiles[profile].sampling_down_factor);
     sysfs_write_str(INTERACTIVE_PATH "target_loads",
                     profiles[profile].target_loads);
-	
-	if (profile == PROFILE_POWER_SAVE) {
-	/* If the device needs to save power, make it a dual core, set the hotplug profile to eco, disable input boost and limit the maximum cpufreq to 787mhz */
-	sysfs_write_int(HOTPLUG_PATH "max_cpus_online", 2);
-	sysfs_write_int(HOTPLUG_PATH "full_mode_profile", 5);
-	sysfs_write_str(CPUBOOST_PATH "parameters/input_boost_freq", "0:0");
-	sysfs_write_int(CPU_PATH "cpu0/cpufreq/scaling_max_freq", 787200);
-	sysfs_write_int(CPU_PATH "cpu1/cpufreq/scaling_max_freq", 787200);
-	
-	}else{
-	sysfs_write_int(HOTPLUG_PATH "max_cpus_online", 4);
-	sysfs_write_int(HOTPLUG_PATH "full_mode_profile", 2);
-	sysfs_write_str(CPUBOOST_PATH "parameters/input_boost_freq", "0:1190400");
-	sysfs_write_int(CPU_PATH "cpu0/cpufreq/scaling_max_freq", 1190400);
-	sysfs_write_int(CPU_PATH "cpu1/cpufreq/scaling_max_freq", 1190400);
-	}
-
     current_power_profile = profile;
 }
 
