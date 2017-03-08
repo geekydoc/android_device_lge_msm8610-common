@@ -395,9 +395,6 @@ on post-fs-data
     #Create a folder for SRS to be able to create a usercfg file
     mkdir /data/data/media 0770 media media
 
-    #Set proximity detection to 10cm
-    write /sys/devices/virtual/input/input4/ppcount 16
-
 #service irsc_util /system/bin/irsc_util "/etc/sec_config"
 #    class main
 #    user root
