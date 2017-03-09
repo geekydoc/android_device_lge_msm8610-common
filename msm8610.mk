@@ -247,6 +247,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
 	sensors.msm8610
 
+# Timekeep
+PRODUCT_PACKAGES += \
+	timekeep \
+	TimeKeep
 
 # BoringSSL
 PRODUCT_PACKAGES += \

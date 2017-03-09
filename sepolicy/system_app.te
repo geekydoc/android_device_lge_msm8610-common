@@ -1,4 +1,7 @@
 allow system_app shell_data_file:dir r_dir_perms;
 allow system_app unlabeled:dir search;
 allow system_app self:process ptrace;
+allow system_app timekeep_prop:property_service set;
+
+
 
