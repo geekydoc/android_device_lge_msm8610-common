@@ -165,9 +165,6 @@
 	<!-- Older rotation sensors are not setting event.timestamp correctly. Setting to true will use SystemClock.elapsedRealtimeNanos() to set timestamp. -->
     <bool name="config_useSystemClockforRotationSensor">true</bool>
 
-    <!-- Disable IpReachability monitor -->
-    <bool name="config_wifi_ipreachability_monitor">false</bool>
-
 	<integer name="config_longPressOnHomeBehavior">2</integer>
 
     <!-- Our modem doesn't support this query yet -->
