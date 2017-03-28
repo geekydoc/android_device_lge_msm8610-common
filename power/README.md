@@ -8,7 +8,7 @@ This project attemps to use a custom Power and CPU management combo to get even 
 
 **Kernel Space Cpu Hotplug Drivers**
 
-Getting the cpu hotplugging code in kernel space, offers smaller execution times as well as greater configuration options. The kernel for this project integrates a simple cpu hotplug solution that gets cpus online/offline based on the maximum frequency of the online cpus. A special interactive governor tuning has also been done, in order to utilize mostly lower but also less power hungry cpu frequencies (see below). This change eliminates the need for the closed-source mpdecision daemon by qualcomm, which was dropped in from a different device (and most probably tuned for it by qualcomm developers). The above change is accompanied by a kernel-space thermal driver, intellithermal (by faux123), which substitutes the closed-source thermal-engine by qualcomm.
+Getting the cpu hotplugging code in kernel space, offers smaller execution times as well as greater configuration options. The kernel for this project integrates the intelliplug hotplug driver by faux123, which plugs/unplugs cores based on execution load. A special interactive governor tuning has also been done, in order to utilize mostly lower but also less power hungry cpu frequencies (see below). This change eliminates the need for the closed-source mpdecision daemon by qualcomm, which was dropped in from a different device (and most probably tuned for it by qualcomm developers). The above change is accompanied by a kernel-space thermal driver, intellithermal (again by faux123), which substitutes the closed-source thermal-engine by qualcomm.
 
 **The PowerHAL**
 

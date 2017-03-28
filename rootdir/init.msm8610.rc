@@ -330,7 +330,7 @@ on post-fs-data
 	write /sys/module/cpu_boost/parameters/wakeup_boost Y
 	chmod 0644 /sys/module/cpu_boost/parameters/input_boost_freq
 	chwon system system /sys/module/cpu_boost/parameters/input_boost_freq
-	write /sys/module/cpu_boost/parameters/input_boost_freq "0:1190400"
+	write /sys/module/cpu_boost/parameters/input_boost_freq "0:787200"
 
 	#Set up the hotplug driver
 	chmod 0644 /sys/kernel/intelli_plug/intelli_plug_active
