@@ -3,5 +3,3 @@ type vibe_dev, file_type;
 type touchpanel_sysfs, sysfs_type, file_type;
 type hwaddrs_data_file, file_type, data_file_type;
 type akmd09911_access_file1, file_type,data_file_type;
-type rtc_sysfs, sysfs_type, file_type;
-
