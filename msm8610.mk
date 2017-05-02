@@ -119,9 +119,6 @@ PRODUCT_PACKAGES += \
     tcpdump \
     libxml2
 
-#CMActions
-PRODUCT_PACKAGES += \
-    CMActions
  
 # Misc
 PRODUCT_PACKAGES += \
