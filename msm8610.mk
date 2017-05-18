@@ -252,9 +252,9 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     libboringssl-compat
 
-# Gello
+# Jelly
 PRODUCT_PACKAGES += \
-    Gello
+    Jelly
 
 # Snap
 PRODUCT_PACKAGES += \
