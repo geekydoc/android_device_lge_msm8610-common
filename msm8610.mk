@@ -260,6 +260,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
 	Snap
 
+# Update Notify Service
+PRODUCT_PACKAGES += \
+	UpdateNotify
+
 # System properties
 -include $(LOCAL_PATH)/system_prop.mk
 
