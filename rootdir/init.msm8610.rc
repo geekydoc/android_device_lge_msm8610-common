@@ -190,12 +190,6 @@ on boot
     chown media media /dev/msm_IRRC_pcm_dec
     chmod 0660 /dev/msm_IRRC_pcm_dec
 
-	
-
-	# Adaptive LMK
-    write /sys/module/lowmemorykiller/parameters/enable_adaptive_lmk 1
-    write /sys/module/lowmemorykiller/parameters/vmpressure_file_min 53059
-
 on fs
 
     mkdir /dev/usb-ffs 0770 shell shell
@@ -280,76 +274,55 @@ on post-fs-data
     chown system system /sys/devices/platform/msm_sdcc.3/polling
     chown system system /sys/devices/platform/msm_sdcc.4/polling
 
-    # Switch to interactive and let PowerHAL configure it
-    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor interactive
-    chown system system /sys/devices/system/cpu/cpufreq/interactive/above_hispeed_delay
-    chmod 0644 /sys/devices/system/cpu/cpufreq/interactive/above_hispeed_delay
-    chown system system /sys/devices/system/cpu/cpufreq/interactive/boost
-    chmod 0644 /sys/devices/system/cpu/cpufreq/interactive/boost
-    chown system system /sys/devices/system/cpu/cpufreq/interactive/boostpulse
-    chmod 0644 /sys/devices/system/cpu/cpufreq/interactive/boostpulse
-    chown system system /sys/devices/system/cpu/cpufreq/interactive/boostpulse_duration
-    chmod 0644 /sys/devices/system/cpu/cpufreq/interactive/boostpulse_duration
-    chown system system /sys/devices/system/cpu/cpufreq/interactive/go_hispeed_load
-    chmod 0644 /sys/devices/system/cpu/cpufreq/interactive/go_hispeed_load
-    chown system system /sys/devices/system/cpu/cpufreq/interactive/hispeed_freq
-    chmod 0644 /sys/devices/system/cpu/cpufreq/interactive/hispeed_freq
-    chown system system /sys/devices/system/cpu/cpufreq/interactive/io_is_busy
-    chmod 0644 /sys/devices/system/cpu/cpufreq/interactive/io_is_busy
-    chown system system /sys/devices/system/cpu/cpufreq/interactive/min_sample_time
-    chmod 0644 /sys/devices/system/cpu/cpufreq/interactive/min_sample_time
-    chown system system /sys/devices/system/cpu/cpufreq/interactive/sampling_down_factor
-    chmod 0644 /sys/devices/system/cpu/cpufreq/interactive/sampling_down_factor
-    chown system system /sys/devices/system/cpu/cpufreq/interactive/sync_freq
-    chmod 0644 /sys/devices/system/cpu/cpufreq/interactive/sync_freq
-    chown system system /sys/devices/system/cpu/cpufreq/interactive/target_loads
-    chmod 0644 /sys/devices/system/cpu/cpufreq/interactive/target_loads
-    chown system system /sys/devices/system/cpu/cpufreq/interactive/timer_rate
-    chmod 0644 /sys/devices/system/cpu/cpufreq/interactive/timer_rate
-    chown system system /sys/devices/system/cpu/cpufreq/interactive/timer_slack
-    chmod 0644 /sys/devices/system/cpu/cpufreq/interactive/timer_slack
-    chown system system /sys/devices/system/cpu/cpufreq/interactive/up_threshold_any_cpu_freq
-    chmod 0644 /sys/devices/system/cpu/cpufreq/interactive/up_threshold_any_cpu_freq
-    chown system system /sys/devices/system/cpu/cpufreq/interactive/up_threshold_any_cpu_load
-    chmod 0644 /sys/devices/system/cpu/cpufreq/interactive/up_threshold_any_cpu_load
-	chmod 0644 /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
-	chmod 0644 /sys/devices/system/cpu/cpu1/cpufreq/scaling_max_freq
-    chown system system /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
-	chown system system /sys/devices/system/cpu/cpu1/cpufreq/scaling_max_freq
-	
-	#Set up the cpu-boost driver | Currently, input boost is limited only to the first cpu core
-	chmod 0644 /sys/module/cpu_boost/parameters/input_boost_ms
-	chwon system system /sys/module/cpu_boost/parameters/input_boost_ms
-	write /sys/module/cpu_boost/parameters/input_boost_ms 1000
-	chmod 0644 /sys/module/cpu_boost/parameters/wakeup_boost
-	chwon system system /sys/module/cpu_boost/parameters/wakeup_boost
-	write /sys/module/cpu_boost/parameters/wakeup_boost Y
-	chmod 0644 /sys/module/cpu_boost/parameters/input_boost_freq
-	chwon system system /sys/module/cpu_boost/parameters/input_boost_freq
-	write /sys/module/cpu_boost/parameters/input_boost_freq "0:787200"
-
-	#Set up the hotplug driver
-	chmod 0644 /sys/kernel/intelli_plug/intelli_plug_active
-	chwon system system /sys/kernel/intelli_plug/intelli_plug_active
-	write /sys/kernel/intelli_plug/intelli_plug_active 1
-    chmod 0644 /sys/kernel/intelli_plug/min_cpus_online
-    chmod 0644 /sys/kernel/intelli_plug/max_cpus_online
-	chown system system /sys/kernel/intelli_plug/min_cpus_online
-    chown system system /sys/kernel/intelli_plug/max_cpus_online
-	write /sys/kernel/intelli_plug/min_cpus_online 1
-	write /sys/kernel/intelli_plug/max_cpus_online 4
-	chomd 0644 /sys/kernel/intelli_plug/full_mode_profile
-	chown system system /sys/kernel/intelli_plug/full_mode_profile
-	write /sys/kernel/intelli_plug/full_mode_profile 2
-	chomd 0644 /sys/kernel/intelli_plug/suspend_defer_time
-	chwon system system /sys/kernel/intelli_plug/suspend _defer_time
-	write /sys/kernel/intelli_plug/suspend_defer_time 10
-	chomd 0644 /sys/kernel/intelli_plug/max_cpus_online_susp
-	chown system system /sys/kernel/intelli_plug/max_cpus_online_susp
-	write /sys/kernel/intelli_plug/max_cpus_online_susp 1
-	chomd 0644 /sys/kernel/intelli_plug/cpus_boosted
-	chown system system /sys/kernel/intelli_plug/cpus_boosted
-	write /sys/kernel/intelli_plug/cpus_boosted 2
+    # Set up CPU governor tunables for PowerHAL    
+    chown system system /sys/devices/system/cpu/cpufreq/pegasusq/cpu_down_rate
+    chmod 0644 /sys/devices/system/cpu/cpufreq/pegasusq/cpu_down_rate
+    chown system system /sys/devices/system/cpu/cpufreq/pegasusq/cpu_up_rate
+    chmod 0644 /sys/devices/system/cpu/cpufreq/pegasusq/cpu_up_rate
+    chown system system /sys/devices/system/cpu/cpufreq/pegasusq/down_differential
+    chmod 0644 /sys/devices/system/cpu/cpufreq/pegasusq/down_differential
+    chown system system /sys/devices/system/cpu/cpufreq/pegasusq/freq_for_responsiveness
+    chmod 0644 /sys/devices/system/cpu/cpufreq/pegasusq/freq_for_responsiveness
+    chown system system /sys/devices/system/cpu/cpufreq/pegasusq/freq_step
+    chmod 0644 /sys/devices/system/cpu/cpufreq/pegasusq/freq_step
+    chown system system /sys/devices/system/cpu/cpufreq/pegasusq/hotplug_freq_1_1
+    chmod 0644 /sys/devices/system/cpu/cpufreq/pegasusq/hotplug_freq_1_1
+    chown system system /sys/devices/system/cpu/cpufreq/pegasusq/hotplug_freq_2_0
+    chmod 0644 /sys/devices/system/cpu/cpufreq/pegasusq/hotplug_freq_2_0
+    chown system system /sys/devices/system/cpu/cpufreq/pegasusq/hotplug_freq_2_1
+    chmod 0644 /sys/devices/system/cpu/cpufreq/pegasusq/hotplug_freq_2_1
+    chown system system /sys/devices/system/cpu/cpufreq/pegasusq/hotplug_freq_3_0
+    chmod 0644 /sys/devices/system/cpu/cpufreq/pegasusq/hotplug_freq_3_0
+    chown system system /sys/devices/system/cpu/cpufreq/pegasusq/hotplug_freq_3_1
+    chmod 0644 /sys/devices/system/cpu/cpufreq/pegasusq/hotplug_freq_3_1
+    chown system system /sys/devices/system/cpu/cpufreq/pegasusq/hotplug_freq_4_0
+    chmod 0644 /sys/devices/system/cpu/cpufreq/pegasusq/hotplug_freq_4_0
+    chown system system /sys/devices/system/cpu/cpufreq/pegasusq/hotplug_rq_1_1
+    chmod 0644 /sys/devices/system/cpu/cpufreq/pegasusq/hotplug_rq_1_1
+    chown system system /sys/devices/system/cpu/cpufreq/pegasusq/hotplug_rq_2_0
+    chmod 0644 /sys/devices/system/cpu/cpufreq/pegasusq/hotplug_rq_2_0
+    chown system system /sys/devices/system/cpu/cpufreq/pegasusq/hotplug_rq_2_1
+    chmod 0644 /sys/devices/system/cpu/cpufreq/pegasusq/hotplug_rq_2_1
+    chown system system /sys/devices/system/cpu/cpufreq/pegasusq/hotplug_rq_3_0
+    chmod 0644 /sys/devices/system/cpu/cpufreq/pegasusq/hotplug_rq_3_0
+    chown system system /sys/devices/system/cpu/cpufreq/pegasusq/hotplug_rq_3_1
+    chmod 0644 /sys/devices/system/cpu/cpufreq/pegasusq/hotplug_rq_3_1
+    chown system system /sys/devices/system/cpu/cpufreq/pegasusq/hotplug_rq_4_0
+    chmod 0644 /sys/devices/system/cpu/cpufreq/pegasusq/hotplug_rq_4_0
+    chown system system /sys/devices/system/cpu/cpufreq/pegasusq/ignore_nice_load
+    chmod 0644 /sys/devices/system/cpu/cpufreq/pegasusq/ignore_nice_load
+    chown system system /sys/devices/system/cpu/cpufreq/pegasusq/io_is_busy
+    chmod 0644 /sys/devices/system/cpu/cpufreq/pegasusq/io_is_busy
+    chown system system /sys/devices/system/cpu/cpufreq/pegasusq/up_threshold
+    chmod 0644 /sys/devices/system/cpu/cpufreq/pegasusq/up_threshold
+    chown system system /sys/devices/system/cpu/cpufreq/pegasusq/up_threshold_at_min_freq
+    chmod 0644 /sys/devices/system/cpu/cpufreq/pegasusq/up_threshold_at_min_freq
+    chown system system /sys/devices/system/cpu/cpufreq/pegasusq/sampling_down_factor
+    chmod 0644 /sys/devices/system/cpu/cpufreq/pegasusq/sampling_down_factor
+    chown system system /sys/devices/system/cpu/cpufreq/pegasusq/sampling_rate
+    chmod 0644 /sys/devices/system/cpu/cpufreq/pegasusq/sampling_rate
+    chown system system /sys/devices/system/cpu/cpufreq/pegasusq/sampling_rate_min
+    chmod 0644 /sys/devices/system/cpu/cpufreq/pegasusq/sampling_rate_min
 
 
 	#Set up the thermal subsystem
@@ -448,7 +421,6 @@ service wpa_supplicant /system/bin/wpa_supplicant \
     disabled
     oneshot
 
-
 service hostapd /system/bin/hostapd -dddd /data/hostapd/hostapd.conf
     class late_start
     user root
@@ -513,9 +485,6 @@ service time_daemon /system/bin/time_daemon
    class late_start
    user root
    group root
-
-
-
 
 service charger /sbin/healthd -c
     class charger

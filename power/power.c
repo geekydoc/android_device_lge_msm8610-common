@@ -31,9 +31,7 @@
 
 #include "power.h"
 
-#define CPU_PATH "/sys/devices/system/cpu/"
-#define CPUBOOST_PATH "/sys/module/cpu_boost/"
-#define INTERACTIVE_PATH "/sys/devices/system/cpu/cpufreq/interactive/"
+#define GOV_PATH "/sys/devices/system/cpu/cpufreq/pegasusq/"
 
 static pthread_mutex_t lock = PTHREAD_MUTEX_INITIALIZER;
 static int boostpulse_fd = -1;
@@ -77,7 +75,7 @@ static int sysfs_write_int(char *path, int value)
 static bool check_governor(void)
 {
     struct stat s;
-    int err = stat(INTERACTIVE_PATH, &s);
+    int err = stat(GOV_PATH, &s);
     if (err != 0) return false;
     if (S_ISDIR(s.st_mode)) return true;
     return false;
@@ -91,36 +89,11 @@ static int is_profile_valid(int profile)
 static void power_init(__attribute__((unused)) struct power_module *module)
 {
     ALOGI("%s", __func__);
-}
-
-static int boostpulse_open()
-{
-    pthread_mutex_lock(&lock);
-    if (boostpulse_fd < 0) {
-        boostpulse_fd = open(INTERACTIVE_PATH "boostpulse", O_WRONLY);
-    }
-    pthread_mutex_unlock(&lock);
-
-    return boostpulse_fd;
-}
+}		
 
 static void power_set_interactive(__attribute__((unused)) struct power_module *module, int on)
 {
-    if (!is_profile_valid(current_power_profile)) {
-        ALOGD("%s: no power profile selected yet", __func__);
-        return;
-    }
-
-    // break out early if governor is not interactive
-    if (!check_governor()) return;
-    sysfs_write_int(INTERACTIVE_PATH "hispeed_freq",
-                        profiles[current_power_profile].hispeed_freq);
-    sysfs_write_int(INTERACTIVE_PATH "go_hispeed_load",
-                        profiles[current_power_profile].go_hispeed_load);
-    sysfs_write_int(INTERACTIVE_PATH "timer_rate",
-                        profiles[current_power_profile].timer_rate);
-    sysfs_write_str(INTERACTIVE_PATH "target_loads",
-                        profiles[current_power_profile].target_loads);
+    ALOGI("Set_Interactive is not supported on the current PowerHAL");
 }
 
 static void set_power_profile(int profile)
@@ -130,7 +103,7 @@ static void set_power_profile(int profile)
         return;
     }
 
-    // break out early if governor is not interactive
+    // break out early if governor is not pegasusq
     if (!check_governor()) return;
 
     if (profile == current_power_profile)
@@ -138,27 +111,55 @@ static void set_power_profile(int profile)
 
     ALOGD("%s: setting profile %d", __func__, profile);
 
-    sysfs_write_int(INTERACTIVE_PATH "boost",
-                    profiles[profile].boost);
-    sysfs_write_int(INTERACTIVE_PATH "boostpulse_duration",
-                    profiles[profile].boostpulse_duration);
-    sysfs_write_int(INTERACTIVE_PATH "go_hispeed_load",
-                    profiles[profile].go_hispeed_load);
-    sysfs_write_int(INTERACTIVE_PATH "hispeed_freq",
-                    profiles[profile].hispeed_freq);
-    sysfs_write_str(INTERACTIVE_PATH "above_hispeed_delay",
-                    profiles[profile].above_hispeed_delay);
-    sysfs_write_int(INTERACTIVE_PATH "timer_rate",
-                    profiles[profile].timer_rate);
-    sysfs_write_int(INTERACTIVE_PATH "io_is_busy",
+    sysfs_write_int(GOV_PATH "cpu_down_rate",
+                    profiles[profile].cpu_down_rate);
+    sysfs_write_int(GOV_PATH "cpu_up_rate",
+                    profiles[profile].cpu_up_rate);
+    sysfs_write_int(GOV_PATH "down_differential",
+                    profiles[profile].down_differential);
+    sysfs_write_int(GOV_PATH "freq_for_responsiveness",
+                    profiles[profile].freq_for_responsiveness);
+    sysfs_write_int(GOV_PATH "freq_step",
+                    profiles[profile].freq_step);
+    sysfs_write_int(GOV_PATH "hotplug_freq_1_1",
+                    profiles[profile].hotplug_freq_1_1);
+    sysfs_write_int(GOV_PATH "hotplug_freq_2_0",
+                    profiles[profile].hotplug_freq_2_0);
+    sysfs_write_int(GOV_PATH "hotplug_freq_2_1",
+                    profiles[profile].hotplug_freq_2_1);
+    sysfs_write_int(GOV_PATH "hotplug_freq_3_0",
+                    profiles[profile].hotplug_freq_3_0);
+    sysfs_write_int(GOV_PATH "hotplug_freq_3_1",
+                    profiles[profile].hotplug_freq_3_1);
+    sysfs_write_int(GOV_PATH "hotplug_freq_4_0",
+                    profiles[profile].hotplug_freq_4_0);
+    sysfs_write_int(GOV_PATH "hotplug_rq_1_1",
+                    profiles[profile].hotplug_rq_1_1);
+    sysfs_write_int(GOV_PATH "hotplug_rq_2_0",
+                    profiles[profile].hotplug_rq_2_0);
+    sysfs_write_int(GOV_PATH "hotplug_rq_2_1",
+                    profiles[profile].hotplug_rq_2_1);
+    sysfs_write_int(GOV_PATH "hotplug_rq_3_0",
+                    profiles[profile].hotplug_rq_3_0);
+    sysfs_write_int(GOV_PATH "hotplug_rq_3_1",
+                    profiles[profile].hotplug_rq_3_1);
+    sysfs_write_int(GOV_PATH "hotplug_rq_4_0",
+                    profiles[profile].hotplug_rq_4_0);
+    sysfs_write_int(GOV_PATH "ignore_nice_load",
+                    profiles[profile].ignore_nice_load);
+    sysfs_write_int(GOV_PATH "io_is_busy",
                     profiles[profile].io_is_busy);
-    sysfs_write_int(INTERACTIVE_PATH "min_sample_time",
-                    profiles[profile].min_sample_time);
-    sysfs_write_int(INTERACTIVE_PATH "sampling_down_factor",
+    sysfs_write_int(GOV_PATH "sampling_down_factor",
                     profiles[profile].sampling_down_factor);
-    sysfs_write_str(INTERACTIVE_PATH "target_loads",
-                    profiles[profile].target_loads);
-    current_power_profile = profile;
+    sysfs_write_int(GOV_PATH "sampling_rate",
+                    profiles[profile].sampling_rate);
+    sysfs_write_int(GOV_PATH "sampling_rate_min",
+                    profiles[profile].sampling_rate_min);
+    sysfs_write_int(GOV_PATH "up_threshold",
+                    profiles[profile].up_threshold);
+    sysfs_write_int(GOV_PATH "up_threshold_at_min_freq",
+                    profiles[profile].up_threshold_at_min_freq);
+    current_power_profile = profile;  
 }
 
 static void power_hint(__attribute__((unused)) struct power_module *module,
@@ -170,30 +171,6 @@ static void power_hint(__attribute__((unused)) struct power_module *module,
     switch (hint) {
     case POWER_HINT_LAUNCH:
     case POWER_HINT_CPU_BOOST:
-        if (!is_profile_valid(current_power_profile)) {
-            ALOGD("%s: no power profile selected yet", __func__);
-            return;
-        }
-
-		 // break out early if governor is not interactive
-        if (!check_governor()) return;
-
-        if (!profiles[current_power_profile].boostpulse_duration)
-            return;
-
-        if (boostpulse_open() >= 0) {
-            snprintf(buf, sizeof(buf), "%d", 1);
-            len = write(boostpulse_fd, &buf, sizeof(buf));
-            if (len < 0) {
-                strerror_r(errno, buf, sizeof(buf));
-                ALOGE("Error writing to boostpulse: %s\n", buf);
-
-                pthread_mutex_lock(&lock);
-                close(boostpulse_fd);
-                boostpulse_fd = -1;
-                pthread_mutex_unlock(&lock);
-            }
-        }
         break;
     case POWER_HINT_SET_PROFILE:
         pthread_mutex_lock(&lock);
@@ -238,8 +215,8 @@ struct power_module HAL_MODULE_INFO_SYM = {
         .module_api_version = POWER_MODULE_API_VERSION_0_2,
         .hal_api_version = HARDWARE_HAL_API_VERSION,
         .id = POWER_HARDWARE_MODULE_ID,
-        .name = "msm8610 Power HAL",
-        .author = "CyanogenMod",
+        .name = "msm8610 custom Power HAL",
+        .author = "CyanogenMod/LineageOS/geekydoc",
         .methods = &power_module_methods,
     },
 

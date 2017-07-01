@@ -22,54 +22,109 @@ enum {
 };
 
 typedef struct governor_settings {
-    int is_interactive;
-    int boost;
-    int boostpulse_duration;
-    int go_hispeed_load;
-    int hispeed_freq;
-    int timer_rate;
-    char *above_hispeed_delay;
-    int io_is_busy;
-    int min_sample_time;
-    int sampling_down_factor;
-    char *target_loads;
+    int cpu_down_rate;
+    int cpu_up_rate;
+	int down_differential; 
+	int freq_for_responsiveness;
+	int freq_step;
+	int hotplug_freq_1_1;
+	int hotplug_freq_2_0;    
+	int hotplug_freq_2_1;
+	int hotplug_freq_3_0;
+	int hotplug_freq_3_1;
+	int hotplug_freq_4_0;
+	int hotplug_rq_1_1;
+	int hotplug_rq_2_0;
+	int hotplug_rq_2_1;
+	int hotplug_rq_3_0;
+	int hotplug_rq_3_1;
+	int hotplug_rq_4_0;
+	int ignore_nice_load;
+	int io_is_busy;
+	int sampling_down_factor;
+    int sampling_rate;
+	int sampling_rate_min; 
+    int up_threshold;
+    int up_threshold_at_min_freq;               
 } power_profile;
 
 static power_profile profiles[PROFILE_MAX] = {
     [PROFILE_POWER_SAVE] = {
-		.boost = 0,
-        .boostpulse_duration = 200000,
-        .go_hispeed_load = 80,
-        .hispeed_freq = 787200,
-        .timer_rate = 100000,
-        .above_hispeed_delay = "80000",
-        .io_is_busy = 1,
-        .min_sample_time = 100000,
-        .sampling_down_factor = 100000,
-        .target_loads = "50",
+    	.cpu_down_rate = 5,
+    	.cpu_up_rate = 15,
+		.down_differential = 1,
+		.freq_for_responsiveness = 787200,
+		.freq_step = 50,
+		.hotplug_freq_1_1 = 1094400,
+		.hotplug_freq_2_0 = 787200,
+		.hotplug_freq_2_1 = 1094400,
+		.hotplug_freq_3_0 = 787200,
+		.hotplug_freq_3_1 = 1094400,
+		.hotplug_freq_4_0 = 787200,
+		.hotplug_rq_1_1 = 350,
+		.hotplug_rq_2_0 = 200,
+		.hotplug_rq_2_1 = 350,
+		.hotplug_rq_3_0 = 200,
+		.hotplug_rq_3_1 = 350,
+		.hotplug_rq_4_0 = 200,
+		.ignore_nice_load = 1,
+		.io_is_busy = 0,
+		.sampling_down_factor = 2,
+	    .sampling_rate = 80000,
+		.sampling_rate_min = 60000,
+		.up_threshold = 98,
+		.up_threshold_at_min_freq = 90,
     },
     [PROFILE_BALANCED] = {
-        .boost = 0,
-        .boostpulse_duration = 800000,
-        .go_hispeed_load = 95,
-        .hispeed_freq = 787200,
-        .timer_rate = 35000,
-        .above_hispeed_delay = "10000 787200:40000",
-        .io_is_busy = 0,
-        .min_sample_time = 40000,
-        .sampling_down_factor = 100000,
-        .target_loads = "50 300000:80 384000:90 787000:90",
+    	.cpu_down_rate = 5,
+    	.cpu_up_rate = 15,
+		.down_differential = 2,
+		.freq_for_responsiveness = 384000,
+		.freq_step = 20,
+		.hotplug_freq_1_1 = 787200,
+		.hotplug_freq_2_0 = 384000,
+		.hotplug_freq_2_1 = 1094400,
+		.hotplug_freq_3_0 = 600000,
+		.hotplug_freq_3_1 = 1094400,
+		.hotplug_freq_4_0 = 600000,
+		.hotplug_rq_1_1 = 350,
+		.hotplug_rq_2_0 = 150,
+		.hotplug_rq_2_1 = 350,
+		.hotplug_rq_3_0 = 200,
+		.hotplug_rq_3_1 = 300,
+		.hotplug_rq_4_0 = 200,
+		.ignore_nice_load = 1,
+		.io_is_busy = 1,
+		.sampling_down_factor = 2,
+	    .sampling_rate = 70000,
+		.sampling_rate_min = 30000,
+		.up_threshold = 95,
+		.up_threshold_at_min_freq = 85,
     },
     [PROFILE_HIGH_PERFORMANCE] = {
-        .boost = 0,
-        .boostpulse_duration = 0, /* prevent unnecessary write */
-        .go_hispeed_load = 50,
-        .hispeed_freq = 1190400,
-        .timer_rate = 20000,
-        .above_hispeed_delay = "20000",
-        .io_is_busy = 1,
-        .min_sample_time = 60000,
-        .sampling_down_factor = 100000,
-        .target_loads = "30",
+    	.cpu_down_rate = 30,
+    	.cpu_up_rate = 10,
+		.down_differential = 15,
+		.freq_for_responsiveness = 384000,
+		.freq_step = 50,
+		.hotplug_freq_1_1 = 384000,
+		.hotplug_freq_2_0 = 300000,
+		.hotplug_freq_2_1 = 384000,
+		.hotplug_freq_3_0 = 300000,
+		.hotplug_freq_3_1 = 384000,
+		.hotplug_freq_4_0 = 300000,
+		.hotplug_rq_1_1 = 100,
+		.hotplug_rq_2_0 = 10,
+		.hotplug_rq_2_1 = 100,
+		.hotplug_rq_3_0 = 10,
+		.hotplug_rq_3_1 = 100,
+		.hotplug_rq_4_0 = 10,
+		.ignore_nice_load = 0,
+		.io_is_busy = 1,
+		.sampling_down_factor = 2,
+	    .sampling_rate = 70000,
+		.sampling_rate_min = 30000,
+		.up_threshold = 80,
+		.up_threshold_at_min_freq = 65,
     },
 };
