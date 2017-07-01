@@ -13,3 +13,4 @@ allow system_server sensors_data_file:dir { getattr setattr search};
 allow system_server hwaddrs_data_file:file { read getattr open };
 allow system_server sensors_device:chr_file { read write open ioctl };
 allow system_server sysfs_thermal:file r_file_perms;
+allow system_server baseband_prop:file read;
