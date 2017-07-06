@@ -9,6 +9,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.opengles.version=196608 \
     ro.qualcomm.perf.cores_online=2 \
     dalvik.vm.dex2oat-flags=--no-watch-dog \
+	dalvik.vm.dex2oat-filter=interpret-only \
     debug.qualcomm.sns.hal=0 \
     debug.qualcomm.sns.daemon=e \
     debug.qualcomm.sns.libsensor1=e
