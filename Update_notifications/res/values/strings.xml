@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Update Notifications</string>
+    <string name="enable_switch">Enable Automatic Update Checks</string>
+    <string name="running_package">Running Package:</string>
+    <string name="last_available">Latest Available Parckage:</string>
+    <string name="last_check_date">Last Check Date:</string>
+    <string name="connect_retry">Connect to the Internet and retry</string>
+    <string name="check_in_progress">Check in progress. Please wait...</string>
+    <string name="nodata_recheck">No data Available. Click Check Now</string>
+    <string name="nodata">Could not read data</string>
+    <string name="check_now">Check Now</string>
+</resources>

@@ -1,9 +1,0 @@
-<resources>
-    <string name="auto_check_updates" translatable="false">Automatically check for updates</string>
-    <string name="current_package" translatable="false">Running package: </string>
-    <string name="last_package_available" translatable="false">Latest package available:  </string>
-    <string name="last_check" translatable="false">Last Check: </string>
-    <string name="last_check_value" translatable="false"></string>
-    <string name="button_check" translatable="false">check now</string>
-
-</resources>

@@ -263,7 +263,7 @@ PRODUCT_PACKAGES += \
 
 # Update Notify Service
 PRODUCT_PACKAGES += \
-	UpdateNotify
+	Update_Notifications
 
 # System properties
 -include $(LOCAL_PATH)/system_prop.mk
