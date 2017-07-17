@@ -9,4 +9,7 @@
     <string name="nodata_recheck">No data Available. Click Check Now</string>
     <string name="nodata">Could not read data</string>
     <string name="check_now">Check Now</string>
+    <string name="notif_title">Package:</string>
+    <string name="notif_subtitle">New Update Available</string>
+    <string name="notif_content">Visit XDA Developers Thread for more Info</string>
 </resources>

@@ -72,9 +72,9 @@ final class Util {
     static void sendNotification(Context context, String buildname) {
 
         Notification n = new Notification.Builder(context)
-                .setContentTitle("Package: " + buildname)
-                .setSubText("New Update Available")
-                .setContentText("Vist XDA Developers Thread for more Info")
+                .setContentTitle(context.getResources().getString(R.string.notif_title)+ buildname)
+                .setSubText(context.getResources().getString(R.string.notif_subtitle))
+                .setContentText(context.getResources().getString(R.string.notif_content))
                 .setSmallIcon(R.drawable.logo)
                 .setAutoCancel(false).build();
         NotificationManager mNotificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
