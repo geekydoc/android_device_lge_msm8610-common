@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Notificações de Atualização</string>
+    <string name="enable_switch">Verificações Automáticas de Atualização</string>
+    <string name="running_package">Pacote Instalado:</string>
+    <string name="last_available">Último Pacote Disponível:</string>
+    <string name="last_check_date">Última Verificação:</string>
+    <string name="connect_retry">Conecte-se à Internet e tente novamente</string>
+    <string name="check_in_progress">Verificação em execução. Por favor, aguarde...</string>
+    <string name="nodata_recheck">Dados não Disponíveis. Clique em Verificar Agora</string>
+    <string name="nodata">Não foi possível ler dados</string>
+    <string name="check_now">Verificar Agora</string>
+    <string name="notif_title">Pacote:</string>
+    <string name="notif_subtitle">Nova Atualização Disponível</string>
+    <string name="notif_content">Visite o tópico em XDA Developers para mais Informações</string>
+</resources>
