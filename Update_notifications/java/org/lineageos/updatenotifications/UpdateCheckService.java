@@ -52,8 +52,8 @@ public class UpdateCheckService extends JobService {
                         if (builddate_notified < server_builddate)
                             Util.sendNotification(getApplicationContext(), server_buildname);
                             editor.putLong("builddate.utc.notified",server_builddate);
-                            editor.putString("buildname.latest",server_buildname);
 
+                    editor.putString("buildname.latest",server_buildname);
                     editor.putString("last-check-date", DateFormat.getDateTimeInstance().format(new Date()));
                     editor.commit();
                     send_finished_intent();
