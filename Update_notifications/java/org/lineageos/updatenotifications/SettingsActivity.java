@@ -53,9 +53,10 @@ public class SettingsActivity extends Activity {
         }
 
         private void updateUI() {
-            txt_running_package.setText(Util.sharedPrefs.getString("buildname.running","Could not read data"));
-            txt_last_available.setText((Util.sharedPrefs.getString("buildname.latest","No Data. Click Check Now")));
-            txt_last_check_date.setText((Util.sharedPrefs.getString("last-check-date","No Data. Click Check Now")));
+            Context mcontext = getApplicationContext();
+            txt_running_package.setText(Util.sharedPrefs.getString("buildname.running",mcontext.getResources().getString(R.string.nodata)));
+            txt_last_available.setText((Util.sharedPrefs.getString("buildname.latest",mcontext.getResources().getString(R.string.nodata_recheck))));
+            txt_last_check_date.setText((Util.sharedPrefs.getString("last-check-date",mcontext.getResources().getString(R.string.nodata_recheck))));
         }
 
 
