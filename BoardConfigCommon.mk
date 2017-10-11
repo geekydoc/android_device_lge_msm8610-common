@@ -57,6 +57,9 @@ TARGET_KERNEL_CROSS_COMPILE_PREFIX := arm-eabi-
 # Use Snapdragon LLVM, if available
 TARGET_USE_SDCLANG := true
 
+#Dirty Fix. Will be removed when the poweroff BUG is resolved
+TARGET_INIT_UMOUNT_AND_FSCK_IS_UNSAFE := true
+
 # Offmode Charging
 BOARD_GLOBAL_CFLAGS += \
     -DBOARD_CHARGING_CMDLINE_NAME='"androidboot.mode"' \
