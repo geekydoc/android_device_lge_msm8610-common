@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="app_name">Известия за актуализации</string>
+	<string name="enable_switch">Автоматична проверка за актуализации</string>
+	<string name="running_package">Инсталирана версия:</string>
+	<string name="last_available">Актуална версия:</string>
+	<string name="last_check_date">Последна проверка:</string>
+	<string name="connect_retry">Проверката за актуализации се провали. Моля проверете връзката с интернет и опитайте отново по-късно.</string>
+	<string name="check_in_progress">Проверка за актуализации...</string>
+	<string name="nodata_recheck">Няма данни налице. Моля, проверете за актуализации.</string>
+	<string name="nodata">Няма данни налице.</string>
+	<string name="check_now">Провери Сега</string>
+	<string name="notif_title">Версия:</string>
+	<string name="notif_subtitle">Налична е нова актуализация.</string>
+	<string name="notif_content">За повече информация посетете темата в XDA-Developers.</string>
+</resources>

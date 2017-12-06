@@ -1,15 +1,15 @@
 <resources>
-    <string name="app_name">Update Notifications</string>
-    <string name="enable_switch">Enable Automatic Update Checks</string>
-    <string name="running_package">Running Package:</string>
-    <string name="last_available">Latest Available Parckage:</string>
-    <string name="last_check_date">Last Check Date:</string>
-    <string name="connect_retry">Connect to the Internet and retry</string>
-    <string name="check_in_progress">Check in progress. Please wait...</string>
-    <string name="nodata_recheck">No data Available. Click Check Now</string>
-    <string name="nodata">Could not read data</string>
-    <string name="check_now">Check Now</string>
-    <string name="notif_title">Package:</string>
-    <string name="notif_subtitle">New Update Available</string>
-    <string name="notif_content">Visit XDA Developers Thread for more Info</string>
+	<string name="app_name">Update notifications</string>
+	<string name="enable_switch">Automatic update check</string>
+	<string name="running_package">Currently installed build:</string>
+	<string name="last_available">Latest available build:</string>
+	<string name="last_check_date">Last checked:</string>
+	<string name="connect_retry">The update check failed. Please check your internet connection and try again later.</string>
+	<string name="check_in_progress">Checking for updates...</string>
+	<string name="nodata_recheck">No data available. Please check for updates.</string>
+	<string name="nodata">No data available.</string>
+	<string name="check_now">Check Now</string>
+	<string name="notif_title">Build:</string>
+	<string name="notif_subtitle">New build is available.</string>
+	<string name="notif_content">For more info visit XDA-Developers thread.</string>
 </resources>
