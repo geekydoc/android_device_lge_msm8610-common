@@ -14,7 +14,13 @@
 # limitations under the License.
 #
 
-$(call inherit-product, frameworks/native/build/phone-hdpi-dalvik-heap.mk)
+PRODUCT_PROPERTY_OVERRIDES += \
+    dalvik.vm.heapstartsize=5m \
+    dalvik.vm.heapgrowthlimit=64m \
+    dalvik.vm.heapsize=72m \
+    dalvik.vm.heaptargetutilization=0.75 \
+    dalvik.vm.heapminfree=512k \
+    dalvik.vm.heapmaxfree=2m
 
 $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 
