@@ -72,6 +72,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     mm.enable.smoothstreaming=true \
     ro.qc.sdk.audio.fluencetype=endfire \
     persist.audio.fluence.voicecall=true \
+    audio.offload.disable=1 \
     audio.offload.buffer.size.kb=32 \
     av.offload.enable=true \
     av.streaming.offload.enable=false \
