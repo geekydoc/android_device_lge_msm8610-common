@@ -2,6 +2,10 @@
 PRODUCT_PROPERTY_OVERRIDES += \
     sys.io.scheduler=bfq
 
+# Set UI rendering thread to SCHED_RR
+PRODUCT_PROPERTY_OVERRIDES += \
+	sys.use_fifo_ui
+
 # System properties
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.hwc.mdpcomp.enable=true \
