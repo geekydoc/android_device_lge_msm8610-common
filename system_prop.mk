@@ -4,7 +4,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Set UI rendering thread to SCHED_RR
 PRODUCT_PROPERTY_OVERRIDES += \
-	sys.use_fifo_ui
+	sys.use_fifo_ui=1
 
 # System properties
 PRODUCT_PROPERTY_OVERRIDES += \
