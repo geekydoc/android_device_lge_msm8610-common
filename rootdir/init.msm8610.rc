@@ -212,7 +212,7 @@ on fs
 	write /proc/sys/vm/dirty_expire_centisecs 200
 	write /proc/sys/vm/dirty_writeback_centisecs 100
 	
-	write /proc/sys/random/read_wakeup_threshold 2048
+	write /proc/sys/kernel/random/read_wakeup_threshold 2048
 
 	write /sys/module/lowmemorykiller/parameters/minfree "2360,4720,7080,9440,11800,14160"
 
