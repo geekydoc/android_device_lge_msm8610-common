@@ -584,6 +584,9 @@ on property:sys.boot_completed=1
 	# Set the IO Scheduler of SD card to ROW
 	write /sys/block/mmcblk1/queue/scheduler row
 
+	#Adoptable Storage Multi-Threaded Speedup Tuning
+	write /sys/block/dm-0/queue/max_sectors_kb 32
+
 service fm_dl /system/bin/sh /system/etc/init.qcom.fm.sh
     class late_start
     user system
