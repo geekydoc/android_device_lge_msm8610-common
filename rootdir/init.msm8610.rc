@@ -284,8 +284,6 @@ on post-fs-data
     chown system system /sys/devices/platform/msm_sdcc.3/polling
     chown system system /sys/devices/platform/msm_sdcc.4/polling
 
-	#Enable Hotplug module on boot
-	write /sys/kernel/intelli_plug/intelli_plug_active 1
 
 	#Setup governor tunables for PowerHAL    
     chown system system /sys/devices/system/cpu/cpufreq/interactive/above_hispeed_delay
