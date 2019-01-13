@@ -7,6 +7,7 @@
 # NFC
 /dev/pn547			                                u:object_r:nfc_device:s0
 /dev/rfkill			                                u:object_r:wpa_device:s0
+/sys/devices/platform/bluetooth_rfkill/rfkill/rfkill0/state u:object_r:sysfs_bluetooth_writable:s0
 
 # Sensors
 /dev/K3DH			                                u:object_r:sensors_device:s0
@@ -56,3 +57,6 @@
 
 
 /sys/devices/qpnp-charger\.*/power_supply/battery(/.*)?         u:object_r:sysfs_battery_supply:s0
+
+# Wifi
+/sys/module/bcmdhd/parameters/firmware_path u:object_r:sysfs_wlan_fwpath:s0
