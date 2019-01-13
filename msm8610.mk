@@ -80,8 +80,9 @@ PRODUCT_COPY_FILES += \
     device/lge/msm8610-common/prebuilt/etc/sec_config:system/etc/sec_config \
     device/lge/msm8610-common/gps/etc/izat.conf:system/etc/izat.conf \
     device/lge/msm8610-common/gps/etc/quipc.conf:system/etc/quipc.conf \
-	device/lge/msm8610-common/prebuilt/etc/init.qcom.fm.sh:system/etc/init.qcom.fm.sh
-
+	device/lge/msm8610-common/prebuilt/etc/init.qcom.fm.sh:system/etc/init.qcom.fm.sh \
+    device/lge/msm8610-common/prebuilt/etc/libnfc-brcm.conf:vendor/etc/libnfc-brcm.conf \
+    device/lge/msm8610-common/prebuilt/etc/libnfc-nxp.conf:vendor/etc/libnfc-nxp.conf
 
 # Ramdisk
 PRODUCT_COPY_FILES += \
