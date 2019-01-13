@@ -99,7 +99,7 @@ MAX_EGL_CACHE_SIZE := 2048*1024
 TARGET_TAP_TO_WAKE_NODE := /sys/devices/virtual/input/lge_touch/dt2w_enable
 
 # Hardware tunables framework
-BOARD_HARDWARE_CLASS := device/lge/msm8610-common/cmhw/
+BOARD_HARDWARE_CLASS := device/lge/msm8610-common/lineagehw/
 
 # Bluetooth
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/lge/msm8610-common/bluetooth
