@@ -463,7 +463,7 @@ service qseecomd /system/bin/qseecomd
 
 service bdaddr_loader /system/bin/bdaddr_loader
     user root
-    group bluetooth net_bt_admin misc net_bt_stack
+    group bluetooth net_bt_admin misc
     disabled
     oneshot
 
