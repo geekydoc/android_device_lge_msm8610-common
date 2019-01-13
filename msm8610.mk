@@ -314,6 +314,11 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
 	Update_Notifications
 
+# SECCOMP
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/seccomp/mediacodec.policy:system/vendor/etc/seccomp_policy/mediacodec.policy \
+    $(LOCAL_PATH)/seccomp/mediaextractor.policy:system/vendor/etc/seccomp_policy/mediaextractor.policy
+
 # System properties
 -include $(LOCAL_PATH)/system_prop.mk
 
