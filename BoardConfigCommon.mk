@@ -88,6 +88,9 @@ BOARD_HAVE_QCOM_FM := true
 # GPS
 TARGET_NO_RPC := true
 
+# HIDL
+DEVICE_MANIFEST_FILE := device/lge/msm8610-common/configs/manifest.xml
+
 # Graphics
 BOARD_EGL_CFG := device/lge/msm8610-common/prebuilt/egl.cfg
 TARGET_DISPLAY_USE_RETIRE_FENCE := true

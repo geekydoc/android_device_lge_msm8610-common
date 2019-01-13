@@ -116,7 +116,9 @@ PRODUCT_PACKAGES += \
     aplay \
     amix \
     arec \
-    alsaucm_test
+    alsaucm_test \
+    android.hardware.audio@2.0-impl \
+    android.hardware.audio.effect@2.0-impl
 
 # Misc
 PRODUCT_PACKAGES += \
@@ -126,13 +128,18 @@ PRODUCT_PACKAGES += \
     tcpdump \
     libxml2
 
-#CMActions
+# CMActions
 PRODUCT_PACKAGES += \
     CMActions
  
 # Misc
 PRODUCT_PACKAGES += \
     com.android.future.usb.accessory
+
+# Bluetooth
+PRODUCT_PACKAGES += \
+    hwaddrs
+    android.hardware.bluetooth@1.0-impl
 
 # Crda
 PRODUCT_PACKAGES += \
@@ -161,7 +168,12 @@ PRODUCT_PACKAGES += \
     libwcnss_qmi \
     hostapd \
     wpa_supplicant \
-    wpa_supplicant.conf
+    wpa_supplicant.conf \
+    hostapd.accept \
+    hostapd.deny \
+    hostapd_default.conf \
+    libnetcmdiface \
+    android.hardware.wifi@1.0-service
 
 # Telephony-ext
 PRODUCT_PACKAGES += telephony-ext
@@ -186,7 +198,8 @@ PRODUCT_PACKAGES += \
 
 # GPS
 PRODUCT_PACKAGES += \
-    gps.msm8610
+    gps.msm8610 \
+    android.hardware.gnss@1.0-impl
 
 # HAL
 PRODUCT_PACKAGES += \
@@ -197,6 +210,10 @@ PRODUCT_PACKAGES += \
     lights.msm8610 \
     memtrack.msm8610 \
     power.msm8610
+
+# Power
+PRODUCT_PACKAGES += \
+    android.hardware.power@1.0-impl
 
 # Utilities
 PRODUCT_PACKAGES += \
@@ -218,7 +235,11 @@ PRODUCT_PACKAGES += \
     libmemalloc \
     liboverlay \
     libqdutils \
-    libtilerenderer
+    libtilerenderer \
+    android.hardware.graphics.allocator@2.0-impl \
+    android.hardware.graphics.mapper@2.0-impl \
+    android.hardware.graphics.composer@2.1-impl \
+    android.hardware.memtrack@1.0-impl \
 
 # Omx
 PRODUCT_PACKAGES += \
@@ -242,17 +263,15 @@ PRODUCT_PACKAGES += \
     resize2fs \
     setup_fs
 
-#wifi
-PRODUCT_PACKAGES += \
-    hostapd.accept \
-    hostapd.deny \
-    hostapd_default.conf \
-    libnetcmdiface
 
+# NFC
+PRODUCT_PACKAGES += \
+    android.hardware.nfc@1.0-impl
 
 # Sensors
 PRODUCT_PACKAGES += \
-	sensors.msm8610
+	sensors.msm8610 \
+    android.hardware.sensors@1.0-impl
 
 
 # BoringSSL
@@ -263,9 +282,23 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     Jelly
 
-# Snap
+# Camera
 PRODUCT_PACKAGES += \
-	Snap
+	Snap \
+    android.hardware.camera.provider@2.4-impl-legacy \
+    camera.device@1.0-impl-legacy
+
+# DRM
+PRODUCT_PACKAGES += \
+    android.hardware.drm@1.0-impl
+
+# USB
+PRODUCT_PACKAGES += \
+    android.hardware.usb@1.0-service
+
+# Vibrator
+PRODUCT_PACKAGES += \
+    android.hardware.vibrator@1.0-impl
 
 # Update Notify Service
 PRODUCT_PACKAGES += \
