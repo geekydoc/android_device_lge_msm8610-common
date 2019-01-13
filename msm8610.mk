@@ -68,7 +68,7 @@ PRODUCT_COPY_FILES += \
     device/lge/msm8610-common/prebuilt/etc/audio_effects.conf:vendor/etc/audio_effects.conf \
     device/lge/msm8610-common/prebuilt/etc/mixer_paths.xml:vendor/etc/mixer_paths.xml \
     device/lge/msm8610-common/prebuilt/etc/media_codecs.xml:vendor/etc/media_codecs.xml \
-    device/lge/msm8610-common/prebuilt/etc/media_profiles.xml:vendor/etc/media_profiles.xml \
+    device/lge/msm8610-common/prebuilt/etc/media_profiles_V1_0.xml:vendor/etc/media_profiles_V1_0.xml \
     device/lge/msm8610-common/prebuilt/usr/idc/touch_dev.idc:system/usr/idc/touch_dev.idc \
     device/lge/msm8610-common/prebuilt/usr/keylayout/gpio-keys.kl:system/usr/keylayout/gpio-keys.kl \
     device/lge/msm8610-common/prebuilt/etc/init.crda.sh:system/etc/init.crda.sh \
