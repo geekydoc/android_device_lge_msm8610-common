@@ -88,6 +88,9 @@ BOARD_HAVE_QCOM_FM := true
 # GPS
 TARGET_NO_RPC := true
 
+# Filesystem
+TARGET_FS_CONFIG_GEN := device/lge/msm8610-common/config.fs
+
 # HIDL
 DEVICE_MANIFEST_FILE := device/lge/msm8610-common/configs/manifest.xml
 
