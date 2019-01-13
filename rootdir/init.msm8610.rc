@@ -472,9 +472,9 @@ service time_daemon /system/bin/time_daemon
    user root
    group root
 
-service charger /sbin/healthd -c
+service charger /charger
     class charger
-    seclabel u:r:healthd:s0
+    seclabel u:r:charger:s0
 
 service adsprpcd /system/bin/adsprpcd
    class main
