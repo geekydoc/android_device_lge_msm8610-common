@@ -14,6 +14,7 @@ LOCAL_CFLAGS += -DPDK_FEATURE_SET
 endif
 
 LOCAL_SHARED_LIBRARIES := \
+	loblog \
     libutils \
     libcutils \
     libgps.utils \
