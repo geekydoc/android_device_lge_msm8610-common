@@ -55,6 +55,9 @@ BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x01000000 --tags_offset 0x00000100
 KERNEL_TOOLCHAIN := $(ANDROID_BUILD_TOP)/prebuilts/gcc/$(HOST_OS)-x86/arm/linaro-4.9/bin
 TARGET_KERNEL_CROSS_COMPILE_PREFIX := arm-linux-gnueabihf-
 
+# Binder API version
+TARGET_USES_64_BIT_BINDER := true
+
 # Use Snapdragon LLVM, if available
 TARGET_USE_SDCLANG := true
 
