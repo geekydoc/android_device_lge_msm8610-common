@@ -225,6 +225,9 @@ on fs
 
 on post-fs-data
 
+	# Wifi firmware reload path
+    chown wifi wifi /sys/module/wlan/parameters/fwpath
+
     # Create directory for TZ Apps
     mkdir /data/misc/qsee 0770 system system
 
