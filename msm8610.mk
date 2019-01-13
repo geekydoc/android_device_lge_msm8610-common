@@ -64,9 +64,9 @@ PRODUCT_COPY_FILES += \
     device/lge/msm8610-common/prebuilt/etc/hostapd/hostapd.accept:system/etc/hostapd/hostapd.accept \
     device/lge/msm8610-common/prebuilt/etc/hostapd/hostapd.deny:system/etc/hostapd/hostapd.deny \
     device/lge/msm8610-common/prebuilt/etc/hostapd/hostapd_default.conf:system/etc/hostapd/hostapd_default.conf \
-    device/lge/msm8610-common/prebuilt/etc/audio_policy.conf:system/etc/audio_policy.conf \
-    device/lge/msm8610-common/prebuilt/etc/audio_effects.conf:system/etc/audio_effects.conf \
-    device/lge/msm8610-common/prebuilt/etc/mixer_paths.xml:system/etc/mixer_paths.xml \
+    device/lge/msm8610-common/prebuilt/etc/audio_policy.conf:vendor/etc/audio_policy.conf \
+    device/lge/msm8610-common/prebuilt/etc/audio_effects.conf:vendor/etc/audio_effects.conf \
+    device/lge/msm8610-common/prebuilt/etc/mixer_paths.xml:vendor/etc/mixer_paths.xml \
     device/lge/msm8610-common/prebuilt/etc/media_codecs.xml:system/etc/media_codecs.xml \
     device/lge/msm8610-common/prebuilt/etc/media_profiles.xml:system/etc/media_profiles.xml \
     device/lge/msm8610-common/prebuilt/usr/idc/touch_dev.idc:system/usr/idc/touch_dev.idc \
