@@ -118,7 +118,9 @@ PRODUCT_PACKAGES += \
     arec \
     alsaucm_test \
     android.hardware.audio@2.0-impl \
-    android.hardware.audio.effect@2.0-impl
+    android.hardware.audio.effect@2.0-impl \
+    android.hardware.audio@2.0-service \
+    android.hardware.audio.effect@2.0-service
 
 # Misc
 PRODUCT_PACKAGES += \
@@ -140,7 +142,8 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     hwaddrs \
     libbt-vendor \
-    android.hardware.bluetooth@1.0-impl
+    android.hardware.bluetooth@1.0-impl \
+    android.hardware.bluetooth@1.0-service
 
 # Crda
 PRODUCT_PACKAGES += \
@@ -201,7 +204,8 @@ PRODUCT_PACKAGES += \
 # GPS
 PRODUCT_PACKAGES += \
     gps.msm8610 \
-    android.hardware.gnss@1.0-impl
+    android.hardware.gnss@1.0-impl \
+    android.hardware.gnss@1.0-service
 
 # HAL
 PRODUCT_PACKAGES += \
@@ -242,6 +246,7 @@ PRODUCT_PACKAGES += \
     android.hardware.graphics.mapper@2.0-impl \
     android.hardware.graphics.composer@2.1-impl \
     android.hardware.memtrack@1.0-impl \
+    android.hardware.memtrack@1.0-service
 
 # Omx
 PRODUCT_PACKAGES += \
@@ -273,7 +278,8 @@ PRODUCT_PACKAGES += \
 # Sensors
 PRODUCT_PACKAGES += \
 	sensors.msm8610 \
-    android.hardware.sensors@1.0-impl
+    android.hardware.sensors@1.0-impl \
+    android.hardware.sensors@1.0-service
 
 
 # BoringSSL
@@ -292,7 +298,8 @@ PRODUCT_PACKAGES += \
 
 # DRM
 PRODUCT_PACKAGES += \
-    android.hardware.drm@1.0-impl
+    android.hardware.drm@1.0-impl \
+    android.hardware.drm@1.0-service
 
 # USB
 PRODUCT_PACKAGES += \
