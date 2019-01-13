@@ -43,7 +43,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
     debug.gralloc.map_fb_memory=0 \
     debug.hwc.dynThreshold=1.5 \
     dalvik.vm.heapsize=36m \
-    dev.pm.dyn_samplingrate=1
+    dev.pm.dyn_samplingrate=1 \
+	debug.hwui.use_buffer_age=false
     
 # QCOM HARDWARE
 PRODUCT_PROPERTY_OVERRIDES += \
