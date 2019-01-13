@@ -210,3 +210,5 @@ include device/qcom/sepolicy/legacy-sepolicy.mk
 BOARD_SEPOLICY_DIRS += \
        device/lge/msm8610-common/sepolicy
 
+# Shims
+TARGET_LD_SHIM_LIBS := /system/vendor/lib/libqomx_jpegenc.so|libboringssl-compat.so
