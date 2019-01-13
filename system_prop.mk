@@ -95,3 +95,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.audio.calfile4=/etc/acdbdata/Hdmi_cal.acdb \
     persist.audio.calfile5=/etc/acdbdata/Headset_cal.acdb \
     persist.audio.calfile6=/etc/acdbdata/Speaker_cal.acdb
+
+# Treble OMX
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.media.treble_omx=false
